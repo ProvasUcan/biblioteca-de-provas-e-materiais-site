@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Rubik;
+}
+
+body{
+    overflow-x: hidden;
+    display: grid;
+    height: 100vh;
+    place-items: center;
+}
+
+@font-face {
+    font-family: Rubik;
+    src: url('/font/Rubik-Regular.ttf');
+}
+
+.h1-text-title{
+
+    
+}
+
+.span-text-title{
+    color: #00A7CC;
+}
