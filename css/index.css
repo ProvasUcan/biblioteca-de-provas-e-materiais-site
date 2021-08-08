@@ -8,7 +8,6 @@
 body{
     overflow-x: hidden;
     display: grid;
-    height: 100vh;
     place-items: center;
 }
 
@@ -19,9 +18,43 @@ body{
 
 .h1-text-title{
 
+    margin-top: 50vh;
+    color: #666666;
+    text-align: center;
+    font-size: 2.5rem;
     
+}
+
+.p-text-title{
+    color: #5e5d5d;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20vh;
 }
 
 .span-text-title{
     color: #00A7CC;
+}
+
+.blue-rectangule{
+
+    background-color: #00A7CC;
+    width: 10vw;
+    height: 1vh;
+    margin-right: 80vw;
+}
+
+.link-github{
+
+    text-decoration: none;
+    color: #666666;
+    font-size: 1.4rem;
+    margin-top: 2vh;
+    margin-right: 80vw;
+    font-weight: bold;
+}
+
+.link-github:hover{
+
+    color: black;
 }
