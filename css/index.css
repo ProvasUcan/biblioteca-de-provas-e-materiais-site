@@ -9,6 +9,7 @@ body{
     overflow-x: hidden;
     display: grid;
     place-items: center;
+    background-color: #FBFBFB;
 }
 
 @font-face {
