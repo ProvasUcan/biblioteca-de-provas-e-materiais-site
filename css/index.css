@@ -25,9 +25,11 @@ body{
 .menu-button {
     position: relative;
     display: inline-block;
+    transition: 0.5s;
 }
-.close-button {
-    margin-left: auto;
+.close-menu {
+    position: relative;
+    margin-left: 88%;
 }
 .open-menu {
     width: 6.4rem;
