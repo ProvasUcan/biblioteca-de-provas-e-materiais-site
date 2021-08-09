@@ -164,13 +164,17 @@ const app = new Vue({
 const openMenu = document.querySelector(".open-menu");
 const closeMenu = document.querySelector(".close-menu");
 const menu = document.querySelector('.main-menu');
+openMenu.style.zIndex = 1;
 
 openMenu.onclick = (element) => {
+    openMenu.style.zIndex = 0;
     menu.style.opacity = 1;
     closeMenu.style.opacity = 1;
 }
 
 closeMenu.onclick = (element) => {
+    openMenu.style.zIndex = 1;
     menu.style.opacity = 0;
     closeMenu.style.opacity = 0;
+
 }
