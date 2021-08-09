@@ -165,7 +165,7 @@ const openMenu = document.querySelector(".open-menu");
 const closeMenu = document.querySelector(".close-menu");
 const menu = document.querySelector('.main-menu');
 
-openMenu.onclick = () => {
+openMenu.onclick = (element) => {
     menu.style.opacity = 1;
     closeMenu.style.opacity = 1;
 }
