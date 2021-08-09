@@ -14,6 +14,7 @@ body{
     place-items: center;
     padding: 0;
     margin: 0;
+    background-color: #FBFBFB;
 }
 
 @font-face {
@@ -60,7 +61,7 @@ body{
     color: #666666;
     font-size: 1.4rem;
     margin-top: 2vh;
-    margin-right: 80vw;
+    margin-right: 86.5vw;
     font-weight: bold;
 }
 
