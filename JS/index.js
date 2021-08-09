@@ -165,12 +165,12 @@ const openMenu = document.querySelector(".open-menu");
 const closeMenu = document.querySelector(".close-menu");
 const menu = document.querySelector('.main-menu');
 
-openMenu.onClick = () => {
+openMenu.onclick = () => {
     menu.style.opacity = 1;
     closeMenu.style.opacity = 1;
 }
 
-closeMenu.onClick = (element) => {
+closeMenu.onclick = (element) => {
     menu.style.opacity = 0;
     closeMenu.style.opacity = 0;
 }

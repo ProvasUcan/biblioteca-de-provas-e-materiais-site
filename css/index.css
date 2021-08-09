@@ -23,17 +23,22 @@ body{
 }
 
 .menu-button {
+    position: relative;
+    display: inline-block;
+}
+.close-button {
+
+}
+.open-menu {
     position: absolute;
     top: 5%;
     right: 5%;
-    display: inline-block;
 }
 .h1-text-title{
     margin-top: 50vh;
     color: #666666;
     text-align: center;
     font-size: 2.5rem;
-    
 }
 
 .p-text-title{
