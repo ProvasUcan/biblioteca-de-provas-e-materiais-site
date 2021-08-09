@@ -43,7 +43,7 @@
                             <ul class="content-list">
                                 <li class="content-list--item" v-for="(objectoMaterial, material) in objectoCadeira"
                                     :class="{blue: material == 'Frequências', orange: material == 'Exames', red: material == 'Recursos'}">
-                                    <a href="#" class="download-link-of-material" download>{{ material }}
+                                    <a :href="objectoMaterial.link" class="download-link-of-material" download>{{ material }}
                                         <img class="download-icon" src="img/akar-icons_download.svg"
                                             alt="download-icon">
                                     </a>

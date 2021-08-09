@@ -14,7 +14,7 @@ const app = new Vue({
                             isReadyToDownload: false
                         },
                         'Recursos': {
-                            link: "#", 
+                            link: "https://github.com/Creuma-Kuzola/Biblioteca-de-provas-e-materiais/tree/main/1%C2%BA%20Ano/1%C2%BA%20Semestre/Analise%20Matem%C3%A1tica%201/Exerc%C3%ADcios", 
                             isReadyToDownload: false
                         },
                         'Exercícios': {
