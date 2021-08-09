@@ -1,7 +1,7 @@
 # Biblioteca-de-provas-e-materiais-site
 
 Para melhorar a experiência do estudante, decidimos criar um site para o repositório <a href= "https://github.com/Creuma-Kuzola/Biblioteca-de-provas-e-materiais"> Biblioteca-de-provas-e-materiais</a> com todas as provas.
-Desse jeito será mais fácil e simples para você obter o material!
+Desse jeito será mais <b> fácil e simples para você obter o material! </b>
 
 ## Seja um dos contribuidores
 
