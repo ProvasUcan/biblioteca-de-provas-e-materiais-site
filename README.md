@@ -1,3 +1,27 @@
+# Situação
+
+A situação é a seguinte:
+Temos como objectivo o lançamento do projecto até o ínicio das aulas, para que esteja disponivel para nós estudantes que seria de mais valia para todos.
+
+Alguns detalhes técnicos foram abordados no caso, desde a estrutura de armazenamento de arquivos(Provas e Projectos) como também a questão de desenvolvimento da parte do front e back.
+
+## Stack
+
+**Front-end**:
+  - React.js (Actualmente saindo do Vue.js para o React.js)
+  - HTML
+  - CSS
+  - JS
+
+**Back-end**:
+  - Node.js
+  - MongoDB
+  - Express
+
+
+**Design:** [Design](https://www.figma.com/file/Sh0UMVOC7a3EuCVByCoMyJ/Biblioteca-de-provas?node-id=0%3A1)
+
+
 # Biblioteca-de-provas-e-materiais-site
 
 Para melhorar a experiência do estudante, decidimos criar um site para o repositório <a href= "https://github.com/Creuma-Kuzola/Biblioteca-de-provas-e-materiais"> Biblioteca-de-provas-e-materiais</a> com todas as provas.
