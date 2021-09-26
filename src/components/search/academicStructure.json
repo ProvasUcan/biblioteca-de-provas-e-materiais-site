@@ -1,0 +1,60 @@
+{
+  "Engenharia Informática": {
+    "1º Ano": {
+      "1º Semestre": {
+        "Analise Matemática": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ],
+        "Fundamentos de Programação 1": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ],
+        "Fisica Moderna": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ],
+        "Algebra": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ]
+      }
+    },
+    "2º Ano": {
+      "1º Semestre": {
+        "Analise Matemática": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ],
+        "Fundamentos de Programação 1": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ],
+        "Fisica Moderna": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ],
+        "Algebra": [
+          "Frequências",
+          "Exames",
+          "Recursos",
+          "Exercícios"
+        ]
+      }
+    }
+  }
+}

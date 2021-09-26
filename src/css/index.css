@@ -22,6 +22,127 @@ body{
     src: url('../font/Rubik-Regular.ttf');
 }
 
+#root {
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5rem 0;
+  position: relative;
+  align-items: center;
+}
+.header-title {
+  font-size: 7.2rem;
+  font-weight: bold;
+  display: inline-block;
+  width: 25%;
+}
+
+.contribute-link {
+  padding: 2rem 4rem;
+  font-size: 2.4rem;
+  border-radius: 1rem;
+  background-color:#008cc8;
+  color: #fff;
+  font-weight: medium;
+  text-decoration: none;
+  text-align: center;
+}
+
+.contribute-link:hover {
+  background-color:#00B2FF;
+}
+
+
+
+.search-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.search-container--element {
+  padding: 1rem 2rem;
+  margin-right: 2rem;
+  display: inline-block;
+  font-size: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  border: 0.2rem solid #c4c4c42b;
+  background-color:#c4c4c42b;
+}
+.search-container--element:last-child {
+  margin-right: 12.5rem;
+}
+
+.search-button {
+  padding: 1rem 4rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color:#00A7CC;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+
+.assigment-item {
+  width: 22rem;
+  height: 46.6rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+.assigment-item-preview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+.assigment-item-hover-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(24, 24, 24, 0.233);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.hover-container-menu {
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hover-container-menu--item {
+  width: 7.2rem;
+  height: 7.2rem;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hover-container-menu--item-img {
+  width: 4.2rem;
+  height: 4.2rem;
+}
+
+
+
+
+
 .menu-button {
     position: relative;
     display: inline-block;
