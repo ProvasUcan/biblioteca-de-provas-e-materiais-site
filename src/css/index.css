@@ -39,7 +39,7 @@ body{
   font-size: 7.2rem;
   font-weight: bold;
   display: inline-block;
-  width: 25%;
+  width: 50%;
 }
 
 .contribute-link {
@@ -91,12 +91,19 @@ body{
   color: #fff;
 }
 
+.assigment-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5rem 0;
+}
 
 .assigment-item {
-  width: 22rem;
-  height: 46.6rem;
+  width: 25rem;
+  height: 25.5rem;
   border-radius: 0.5rem;
   position: relative;
+  box-shadow: 0 0.8rem 1rem rgba(0, 0, 0, 0.103);
 }
 .assigment-item-preview {
   position: absolute;
@@ -115,7 +122,15 @@ body{
   height: 100%;
   justify-content: center;
   align-items: center;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transition: 0.5s;
 }
+
+.assigment-item-hover-container:hover {
+  opacity: 1;
+}
+
 .hover-container-menu {
   list-style: none;
   position: relative;
@@ -123,20 +138,54 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 0.5rem;
 }
 .hover-container-menu--item {
-  width: 7.2rem;
-  height: 7.2rem;
+  width: 6.4rem;
+  height: 6.4rem;
   border-radius: 50%;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: 0.5s;
 }
+
+.hover-container-menu--item:hover {
+  background-color: #dadada;
+}
+
 
 .hover-container-menu--item-img {
   width: 4.2rem;
   height: 4.2rem;
+}
+
+.loading-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+.loading-element {
+  animation: loading-animation 1s infinite linear;
+}
+@keyframes loading-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 

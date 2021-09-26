@@ -1,5 +1,6 @@
 import NavBar from "./navbar/NavBar";
 import SearchContainer from "./search/SearchContainer";
+import AssigmentContainer from "./assigments/AssigmentContainer";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
@@ -10,6 +11,8 @@ const App = () => {
         <NavBar></NavBar>
 
         <SearchContainer></SearchContainer>
+
+        <AssigmentContainer></AssigmentContainer>
       </div>
     </Router>
 

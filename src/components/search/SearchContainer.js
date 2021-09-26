@@ -6,18 +6,15 @@ const SearchContainer = () => {
   const [semestre, setSemestre] = useState([]);
   const [subjects, setSubjects] = useState([]);
 
-  const getAllStructureOfCourse = () => {
-    fetch('../../JSON/academicStructure.json')
-  }
-
   const getAllCourses = () => {
     let courseNames = [];
 
-    fetch('academicStructure.json')
-    .then((res) => res)
+    fetch('./academicStructure.json')
+    .then((res) => res.json())
     .then((data) => {
       console.log('ASSASA')
       console.log(data)
+
     })
     .catch(err => {
       console.log(err);
