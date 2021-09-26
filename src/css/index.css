@@ -23,7 +23,7 @@ body{
 }
 
 #root {
-  width: 90vw;
+  width: 95vw;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -43,10 +43,10 @@ body{
 }
 
 .contribute-link {
-  padding: 2rem 4rem;
-  font-size: 2.4rem;
-  border-radius: 1rem;
-  background-color:#008cc8;
+  padding: 1.5rem 5rem;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  background-color:#00B2FF;
   color: #fff;
   font-weight: medium;
   text-decoration: none;
@@ -76,6 +76,8 @@ body{
   border-radius: 0.5rem;
   border: 0.2rem solid #c4c4c42b;
   background-color:#c4c4c42b;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 .search-container--element:last-child {
   margin-right: 12.5rem;
@@ -86,9 +88,12 @@ body{
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  background-color:#00A7CC;
+  background-color:#00B2FF;
   font-size: 1.8rem;
   color: #fff;
+}
+.search-button:hover {
+  background-color:#00B2FF;
 }
 
 .assigment-container {
@@ -104,6 +109,8 @@ body{
   border-radius: 0.5rem;
   position: relative;
   box-shadow: 0 0.8rem 1rem rgba(0, 0, 0, 0.103);
+  margin-right: 2rem;
+  margin-bottom: 2rem;
 }
 .assigment-item-preview {
   position: absolute;

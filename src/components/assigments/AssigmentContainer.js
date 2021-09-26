@@ -4,8 +4,8 @@ const AssigmentContainer = ({ assigments }) => {
   return (
     <div className="assigment-container">
     {
-      assigments.map(assigment => (
-        <AssigmentElement assigment={assigment}></AssigmentElement>
+      assigments.map((assigment, index) => (
+        <AssigmentElement assigment={assigment} id={index}></AssigmentElement>
       ))
     }
       

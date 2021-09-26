@@ -1,7 +1,10 @@
-const AssigmentElement = ({ assigment }) => {
-  return ( 
+import { useState } from "react";
+const AssigmentElement = ({ assigment, id }) => {
+  const [isPeding, setPending] = useState(false)
+
+  return (
     <div className="assigment-item">
-      <img src={assigment} alt="" className="assigment-item-preview" />
+      <img id={'img-' + id} src={assigment} alt="" className="assigment-item-preview" />
 
       <div className="assigment-item-hover-container">
         <ul className="hover-container-menu">
@@ -9,17 +12,20 @@ const AssigmentElement = ({ assigment }) => {
             <img src="./img/fluent_eye-show-24-filled.svg" alt="View assigment" className="hover-container-menu--item-img" />
           </li>
 
-          <li className="hover-container-menu--item">
+          <a href={assigment} className="hover-container-menu--item" download>
             <img src="./img/akar-icons_download.svg" alt="Download assigment" className="hover-container-menu--item-img" />
-          </li>
+          </a>
         </ul>
       </div>
 
-      <div className="loading-container">
-        <img src="./img/eos-icons_loading.svg" alt="Loading Item" className="loading-element" />
-      </div>
+      {isPeding &&
+        <div className="loading-container">
+          <img src="./img/eos-icons_loading.svg" alt="Loading Item" className="loading-element" />
+        </div>
+      }
+
     </div>
-   );
+  );
 }
- 
+
 export default AssigmentElement;

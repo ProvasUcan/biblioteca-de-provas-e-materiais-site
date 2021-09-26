@@ -15,7 +15,6 @@ const App = () => {
     let auxAssigments = await fetch(`http://192.168.0.29:3000/course/${actualCourse}/${actualSubject}/${actualDocumentType}`);
     auxAssigments = (await auxAssigments.json()).result.filesUrls;
 
-    console.log(auxAssigments)
     setAssigments(auxAssigments);
   }
 
@@ -38,14 +37,32 @@ const App = () => {
       <div className="main-app-container">
         <NavBar></NavBar>
 
-        <SearchContainer 
-        handleActualCourseChange={courseChange}
-        handleActualSubjectChange={subjectChange}
-        handleActualDocumentType={documentTypeChange}
-        actualCourse={actualCourse}
-        actualSubject={actualSubject}
-        actualDocumentType={actualDocumentType}
-        handleSearch={searchButton}></SearchContainer>
+        <Switch>
+          <Route exact path="/">
+            <SearchContainer
+              handleActualCourseChange={courseChange}
+              handleActualSubjectChange={subjectChange}
+              handleActualDocumentType={documentTypeChange}
+              actualCourse={actualCourse}
+              actualSubject={actualSubject}
+              actualDocumentType={actualDocumentType}
+              handleSearch={searchButton}>
+            </SearchContainer>
+          </Route>
+
+          <Route exact path="/contribute">
+            <SearchContainer
+              handleActualCourseChange={courseChange}
+              handleActualSubjectChange={subjectChange}
+              handleActualDocumentType={documentTypeChange}
+              actualCourse={actualCourse}
+              actualSubject={actualSubject}
+              actualDocumentType={actualDocumentType}
+              handleSearch={searchButton}>
+            </SearchContainer>
+          </Route>
+        </Switch>
+
 
         <AssigmentContainer assigments={assigments}></AssigmentContainer>
       </div>
