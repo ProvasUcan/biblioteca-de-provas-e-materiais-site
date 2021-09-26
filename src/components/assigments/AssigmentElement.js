@@ -1,7 +1,7 @@
-const AssigmentElement = () => {
+const AssigmentElement = ({ assigment }) => {
   return ( 
     <div className="assigment-item">
-      <img src="./img/IMG_20191018_142643.jpg" alt="" className="assigment-item-preview" />
+      <img src={assigment} alt="" className="assigment-item-preview" />
 
       <div className="assigment-item-hover-container">
         <ul className="hover-container-menu">

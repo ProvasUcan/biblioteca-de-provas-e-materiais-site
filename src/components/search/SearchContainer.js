@@ -1,55 +1,129 @@
 import { useState, useEffect } from "react";
-const SearchContainer = () => {
-  const [actualCourse, setActualCourse] = useState('Curso');
-  const [courses, setCourses] = useState(['Curso']);
-  const [year, setYear] = useState([]);
-  const [semestre, setSemestre] = useState([]);
+
+
+const SearchContainer = (
+  {
+    handleSearch,
+    handleActualCourseChange,
+    handleActualSubjectChange,
+    handleActualDocumentType,
+    actualCourse,
+    actualSubject,
+    actualDocumentType
+  }
+  ) => {
+  
+  const [actualYear, setActualYear] = useState(0);
+  const [actualSemestre, setActualSemestre] = useState(0);
+
+  
+
+  const [courses, setCourses] = useState([]);
+  const [years, setYears] = useState([]);
+  const [semestres, setSemestres] = useState([]);
   const [subjects, setSubjects] = useState([]);
 
-  const getAllCourses = () => {
-    let courseNames = [];
+  const searchStructure = async (selectedCourse = '', selectedYear = 0, selectedSemestre = 0) => {
+    let auxCourse = await fetch('http://192.168.0.29:3000/course/all');
+    auxCourse = (await auxCourse.json()).courses;
+    setCourses(auxCourse);
 
-    fetch('./academicStructure.json')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log('ASSASA')
-      console.log(data)
+    const course = selectedCourse === '' ? auxCourse[0] : actualCourse;
 
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    let auxYears = await fetch(`http://192.168.0.29:3000/course/structure/${course}`);
+    auxYears = (await auxYears.json()).years;
+    setYears(auxYears);
+
+    const year = selectedYear === 0 ? auxYears[0] : actualYear;
+
+    let auxSemestres = await fetch(`http://192.168.0.29:3000/course/structure/${course}/${year}`);
+    auxSemestres = (await auxSemestres.json()).semestres;
+    setSemestres(auxSemestres);
+
+    const semestre = selectedSemestre === 0 ? auxSemestres[0] : actualSemestre;
+    let auxSubjects = await fetch(`http://192.168.0.29:3000/course/structure/${course}/${year}/${semestre}`);
+    auxSubjects = (await auxSubjects.json()).subjects;
+    setSubjects(auxSubjects);
+
+    
+    setActualYear(year);
+    setActualSemestre(semestre);
+
+    handleActualCourseChange(course);
+    handleActualSubjectChange(auxSubjects[0]);
+    handleActualDocumentType('Frequências');
   }
 
+  const yearChange = function (e) {
+    setActualYear(e.target.value);
+    searchStructure(actualCourse, e.target.value);
+  }
+  const semestreChange = function (e) {
+    setActualSemestre(e.target.value);
+    searchStructure(actualCourse, actualYear, e.target.value);
+  }
+
+  const courseChange = function (e) {
+    handleActualCourseChange(e.target.value);
+    searchStructure(e.target.value);
+  }
+  const subjectChange = function (e) {
+    handleActualSubjectChange(e.target.value);
+  }
+  const documentTypeChange = function (e) {
+    handleActualDocumentType(e.target.value);
+  }
+
+  
+
   useEffect(() => {
-    getAllCourses()
+    searchStructure()
   }, [])
 
   return (
     <div className="search-container">
       <div className="search-container--top">
-        <select name="course" id="course" className="search-container--element" >
-          <option>Curso</option>
+        <select onChange={courseChange} name="course" id="course" className="search-container--element" >
+          {
+            courses.map(course => (
+              <option value={course}>{course}</option>
+            ))
+          }
+
         </select>
 
-        <select name="ano" id="ano" className="search-container--element">
-          <option>Ano</option>
+        <select onChange={yearChange} name="ano" id="ano" className="search-container--element">
+          {
+            years.map(year => (
+              <option  value={year}>{year} º Ano</option>
+            ))
+          }
         </select>
 
-        <select name="semestre" id="semestre" className="search-container--element">
-          <option>Semestre</option>
+        <select onChange={semestreChange}  name="semestre" id="semestre" className="search-container--element">
+          {
+            semestres.map(semestre => (
+              <option value={semestre}>{semestre} º Semestre</option>
+            ))
+          }
         </select>
 
-        <select name="subject" id="subject" className="search-container--element">
-          <option>Curso</option>
+        <select onChange={subjectChange} name="subject" id="subject" className="search-container--element">
+          {
+            subjects.map(subject => (
+              <option value={subject}>{subject}</option>
+            ))
+          }
         </select>
 
-        <select name="documentType" id="documentType" className="search-container--element">
-          <option>Curso</option>
+        <select onChange={documentTypeChange} name="documentType" id="documentType" className="search-container--element">
+          <option value="Frequências">Frequências</option>
+          <option value="Exames">Exames</option>
+          <option value="Recursos">Recursos</option>
         </select>
       </div>
 
-      <button className="search-button">Pesquisar</button>
+      <button onClick={handleSearch} className="search-button">Pesquisar</button>
     </div>
   );
 }

@@ -1,11 +1,16 @@
 import AssigmentElement from "./AssigmentElement";
 
-const AssigmentContainer = () => {
-  return ( 
+const AssigmentContainer = ({ assigments }) => {
+  return (
     <div className="assigment-container">
-      <AssigmentElement></AssigmentElement>
+    {
+      assigments.map(assigment => (
+        <AssigmentElement assigment={assigment}></AssigmentElement>
+      ))
+    }
+      
     </div>
-   );
+  );
 }
- 
+
 export default AssigmentContainer;
