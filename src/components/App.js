@@ -1,6 +1,7 @@
 import NavBar from "./navbar/NavBar";
 import SearchContainer from "./search/SearchContainer";
 import AssigmentContainer from "./assigments/AssigmentContainer";
+import Contribute from "./contribute/Contribute";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState } from "react";
 
@@ -46,20 +47,11 @@ const App = () => {
               actualCourse={actualCourse}
               actualSubject={actualSubject}
               actualDocumentType={actualDocumentType}
-              handleSearch={searchButton}>
-            </SearchContainer>
+              handleSearch={searchButton}></SearchContainer>
           </Route>
 
           <Route exact path="/contribute">
-            <SearchContainer
-              handleActualCourseChange={courseChange}
-              handleActualSubjectChange={subjectChange}
-              handleActualDocumentType={documentTypeChange}
-              actualCourse={actualCourse}
-              actualSubject={actualSubject}
-              actualDocumentType={actualDocumentType}
-              handleSearch={searchButton}>
-            </SearchContainer>
+            <Contribute></Contribute>
           </Route>
         </Switch>
 

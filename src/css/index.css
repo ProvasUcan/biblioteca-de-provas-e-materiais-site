@@ -195,6 +195,16 @@ body{
   }
 }
 
+.contribute-container {
+  position: relative;
+}
+.contributers-ilustration {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20vw;
+}
+
 
 
 
