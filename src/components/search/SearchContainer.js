@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-
 const SearchContainer = (
   {
     handleSearch,
@@ -11,41 +10,38 @@ const SearchContainer = (
     actualSubject,
     actualDocumentType
   }
-  ) => {
-  
+) => {
+
   const [actualYear, setActualYear] = useState(0);
   const [actualSemestre, setActualSemestre] = useState(0);
-
-  
-
   const [courses, setCourses] = useState([]);
   const [years, setYears] = useState([]);
   const [semestres, setSemestres] = useState([]);
   const [subjects, setSubjects] = useState([]);
 
   const searchStructure = async (selectedCourse = '', selectedYear = 0, selectedSemestre = 0) => {
-    let auxCourse = await fetch('http://192.168.0.29:3000/course/all');
+    let auxCourse = await fetch('http://192.168.0.29:3000/courses/');
     auxCourse = (await auxCourse.json()).courses;
     setCourses(auxCourse);
 
     const course = selectedCourse === '' ? auxCourse[0] : actualCourse;
 
-    let auxYears = await fetch(`http://192.168.0.29:3000/course/structure/${course}`);
+    let auxYears = await fetch(`http://192.168.0.29:3000/courses/${course}/years`);
     auxYears = (await auxYears.json()).years;
     setYears(auxYears);
 
     const year = selectedYear === 0 ? auxYears[0] : actualYear;
 
-    let auxSemestres = await fetch(`http://192.168.0.29:3000/course/structure/${course}/${year}`);
+    let auxSemestres = await fetch(`http://192.168.0.29:3000/courses/${course}/${year}/semestres`);
     auxSemestres = (await auxSemestres.json()).semestres;
     setSemestres(auxSemestres);
 
     const semestre = selectedSemestre === 0 ? auxSemestres[0] : actualSemestre;
-    let auxSubjects = await fetch(`http://192.168.0.29:3000/course/structure/${course}/${year}/${semestre}`);
+    let auxSubjects = await fetch(`http://192.168.0.29:3000/courses/${course}/${year}/${semestre}/subjects`);
     auxSubjects = (await auxSubjects.json()).subjects;
     setSubjects(auxSubjects);
 
-    
+
     setActualYear(year);
     setActualSemestre(semestre);
 
@@ -74,7 +70,7 @@ const SearchContainer = (
     handleActualDocumentType(e.target.value);
   }
 
-  
+
 
   useEffect(() => {
     searchStructure()
@@ -95,12 +91,12 @@ const SearchContainer = (
         <select onChange={yearChange} name="ano" id="ano" className="search-container--element">
           {
             years.map(year => (
-              <option  value={year}>{year} º Ano</option>
+              <option value={year}>{year} º Ano</option>
             ))
           }
         </select>
 
-        <select onChange={semestreChange}  name="semestre" id="semestre" className="search-container--element">
+        <select onChange={semestreChange} name="semestre" id="semestre" className="search-container--element">
           {
             semestres.map(semestre => (
               <option value={semestre}>{semestre} º Semestre</option>
@@ -122,8 +118,9 @@ const SearchContainer = (
           <option value="Recursos">Recursos</option>
         </select>
       </div>
-
-      <button onClick={handleSearch} className="search-button">Pesquisar</button>
+      <div className="search-container--bottom">
+        <button onClick={handleSearch} className="search-button">Pesquisar</button>
+      </div>
     </div>
   );
 }

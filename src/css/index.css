@@ -65,7 +65,11 @@ body{
   display: flex;
   margin: 2rem 0;
   flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+}
+.search-container--top {
+  display: flex;
+  flex-wrap: wrap;
 }
 .search-container--element {
   padding: 1rem 2rem;
@@ -196,6 +200,8 @@ body{
 }
 
 .contribute-container {
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 .contributers-ilustration {
@@ -203,8 +209,23 @@ body{
   right: 0;
   top: 0;
   width: 20vw;
+  z-index: -1;
 }
-
+.create-new-form {
+  padding: 1rem 2rem;
+  background: #00B2FF;
+  font-size: 2rem;
+  color: white;
+  display: inline-block;
+  width: 10%;
+  border: none;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+  cursor: pointer;
+}
+.create-new-form:hover {
+  background-color: #00b3ffbb;
+}
 
 
 

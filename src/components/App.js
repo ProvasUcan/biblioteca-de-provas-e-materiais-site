@@ -3,7 +3,7 @@ import SearchContainer from "./search/SearchContainer";
 import AssigmentContainer from "./assigments/AssigmentContainer";
 import Contribute from "./contribute/Contribute";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const App = () => {
@@ -11,9 +11,10 @@ const App = () => {
   const [actualCourse, setActualCourse] = useState('');
   const [actualSubject, setActualSubject] = useState('');
   const [actualDocumentType, setActualDocumentType] = useState('');
+  const [allCoursesStructure, setAllCoursesStructure] = useState({});
 
   const getAssigments = async () => {
-    let auxAssigments = await fetch(`http://192.168.0.29:3000/course/${actualCourse}/${actualSubject}/${actualDocumentType}`);
+    let auxAssigments = await fetch(`http://192.168.0.29:3000/courses/${actualCourse}/${actualSubject}/${actualDocumentType}`);
     auxAssigments = (await auxAssigments.json()).result.filesUrls;
 
     setAssigments(auxAssigments);
@@ -33,6 +34,16 @@ const App = () => {
     setActualDocumentType(value);
   }
 
+  const getAllCoursesStructure = async function () {
+    let auxAllCoursesStructure = await fetch(`http://192.168.0.29:3000/courses/all`);
+    auxAllCoursesStructure = await auxAllCoursesStructure.json();
+
+    setAllCoursesStructure(auxAllCoursesStructure.generalCoursesStructure);
+  }
+  useEffect(() => {
+    getAllCoursesStructure();
+  }, []);
+
   return (
     <Router>
       <div className="main-app-container">
@@ -48,6 +59,8 @@ const App = () => {
               actualSubject={actualSubject}
               actualDocumentType={actualDocumentType}
               handleSearch={searchButton}></SearchContainer>
+
+              <AssigmentContainer assigments={assigments}></AssigmentContainer>
           </Route>
 
           <Route exact path="/contribute">
@@ -56,7 +69,7 @@ const App = () => {
         </Switch>
 
 
-        <AssigmentContainer assigments={assigments}></AssigmentContainer>
+
       </div>
     </Router>
 
