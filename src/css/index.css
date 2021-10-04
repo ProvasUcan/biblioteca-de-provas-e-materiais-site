@@ -226,6 +226,13 @@ body{
 .create-new-form:hover {
   background-color: #00b3ffbb;
 }
+.form-container {
+  width: 35%;
+}
+.form-container .form-row-line {
+  display: flex;
+  flex-direction: column;
+}
 
 
 

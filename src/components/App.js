@@ -38,7 +38,7 @@ const App = () => {
     let auxAllCoursesStructure = await fetch(`http://192.168.0.29:3000/courses/all`);
     auxAllCoursesStructure = await auxAllCoursesStructure.json();
 
-    setAllCoursesStructure(auxAllCoursesStructure.generalCoursesStructure);
+    setAllCoursesStructure(auxAllCoursesStructure.courses);
   }
   useEffect(() => {
     getAllCoursesStructure();
@@ -64,7 +64,7 @@ const App = () => {
           </Route>
 
           <Route exact path="/contribute">
-            <Contribute></Contribute>
+            <Contribute allCoursesStructure={allCoursesStructure}></Contribute>
           </Route>
         </Switch>
 
