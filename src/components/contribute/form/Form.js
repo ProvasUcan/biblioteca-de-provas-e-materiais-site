@@ -50,12 +50,40 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     setAvaibleSubjects(Object.keys(allCoursesStructure[courseSelected][courseSelected][yearSelected][semestre]));
   }
 
+  const submitForm = (e, id) => {
+    e.preventDefault();
+    var form = new FormData();
+
+    const destFolder = `${document.getElementById('course').value},${document.getElementById('year').value},${document.getElementById('semestre').value},${document.getElementById('subject').value},${document.getElementById('documentType').value}`;
+    const userEmail = document.getElementById('userEmail').value
+    const files = document.getElementById('files').files;
+
+    form.append('destFolder', destFolder);
+    form.append('userEmail', userEmail);
+    form.append('files', files);
+
+    console.log(form)
+
+    fetch("http://localhost:3000/upload/submission", {
+      method: "POST",
+      body: form
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   useEffect(() => {
     setInitialStateOfForm();
   }, [])
 
   return (
-    <form id={id} className="form-container">
+    <form id={id} enctype="multipart/form-data" className="form-container" method="POST" onSubmit={(e) => {
+      submitForm(e, id);
+    }}>
       <h1 className="subject-form-name">{subjectSelected}</h1>
       <div className="form-row-line">
         <select name="course" id="course" className="search-container--element" >
@@ -67,7 +95,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
         </select>
 
-        <select onChange={handleYearChange} name="ano" id="ano" className="search-container--element">
+        <select onChange={handleYearChange} name="year" id="year" className="search-container--element">
           {
             avaibleYears.map(year => (
               <option value={year}> {year} </option>
@@ -98,6 +126,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
           <option value="Recursos">Recursos</option>
         </select>
       </div>
+      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com"/>
       <button className="delete-button" onClick={() => {
         handleDelete(id);
       }}>Deletar</button>
@@ -105,6 +134,8 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
       <div className="photo-container">
         <input type="file" name="files" id="files" multiple="true" />
       </div>
+
+      <button type="submit">Enviar</button>
     </form>
   );
 }
