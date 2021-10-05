@@ -6,10 +6,15 @@ const Contribute = ({ allCoursesStructure }) => {
   const [formId, setFormId] = useState(0);
 
   function createForm() {
-    console.log(allCoursesStructure);
-
     if (Object.keys(allCoursesStructure).length !== 0) {
-      setForms(forms.concat([<Form id={'form-' + formId} handleDelete={deleteForm} allCoursesStructure={allCoursesStructure}></Form>]));
+      const auxForms = forms;
+
+      auxForms.push({
+        formId: 'form-' + formId,
+        handleDelete: deleteForm,
+        allCoursesStructure: allCoursesStructure
+      })
+      setForms(auxForms);
       setFormId(formId + 1);
     } else {
       alert('Carrengando estrutura de cursos');
@@ -29,8 +34,8 @@ const Contribute = ({ allCoursesStructure }) => {
 
       <div className="contribute-form-container">
         {
-          forms.map(form => (
-            form
+          forms.map((form, index) => (
+            <Form id={form.formId} key={index} handleDelete={form.handleDelete} allCoursesStructure={form.allCoursesStructure}></Form>
           ))
         }
       </div>

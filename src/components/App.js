@@ -35,9 +35,22 @@ const App = () => {
   }
 
   const getAllCoursesStructure = async function () {
-    let auxAllCoursesStructure = await fetch(`http://192.168.0.29:3000/courses/all`);
-    auxAllCoursesStructure = await auxAllCoursesStructure.json();
+    let auxAllCoursesStructure = {} //await fetch(`http://192.168.0.29:3000/courses/all`);
+    //auxAllCoursesStructure = await auxAllCoursesStructure.json();
 
+    auxAllCoursesStructure = {
+      courses: {
+        'Engenharia Informática': {
+          'Engenharia Informática': {
+            '1': {
+              '1': {
+                'Fundamentos de Programação 1': 'Content'
+              }
+            }
+          }
+        }
+      }
+    }
     setAllCoursesStructure(auxAllCoursesStructure.courses);
   }
   useEffect(() => {

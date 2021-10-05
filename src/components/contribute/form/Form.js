@@ -7,6 +7,8 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
   const [avaibleSubjects, setAvaibleSubjects] = useState([]);
   const [filesToSubmitList, setFilesToSubmitList] = useState([]);
 
+  const [formState, setFormState] = useState('');
+
   const [courseSelected, setCourseSelected] = useState('');
   const [yearSelected, setYearSelected] = useState('');
   const [semestreSelected, setSemestreSelected] = useState('');
@@ -51,13 +53,27 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     setAvaibleSubjects(Object.keys(allCoursesStructure[courseSelected][courseSelected][yearSelected][semestre]));
   }
 
+  const activeLoader = (id) => {
+    document.getElementById('sending-form-loader-container' + id).style.display = 'flex';
+    document.getElementById('sending-form-loader-container' + id).style.opacity = '1';
+  }
+
+  const removeLoader = (id) => {
+    document.getElementById('sending-form-loader-container' + id).style.opacity = '0';
+    setTimeout(() => {
+      document.getElementById('sending-form-loader-container' + id).style.display = 'none';
+    }, 600);
+  }
+
   const submitForm = (e, id) => {
     e.preventDefault();
+    setFormState('sending');
+    activeLoader(id);
     var form = new FormData();
 
     const destFolder = `${document.getElementById('course').value},${document.getElementById('year').value},${document.getElementById('semestre').value}, ${document.getElementById('subject').value}, ${document.getElementById('documentType').value}`;
     const userEmail = document.getElementById('userEmail').value
-    const files = document.getElementById('files').files;
+    const files = document.getElementById('files' + id).files;
 
     form.append('destFolder', destFolder);
     form.append('userEmail', userEmail);
@@ -66,17 +82,23 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
       form.append('files', files[actualFileIndex]);
     }
 
+
     fetch("http://localhost:3000/upload/submission", {
       method: "POST",
       body: form
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        handleDelete(id)
+        removeLoader(id)
+        setTimeout(() => {
+          handleDelete(id);
+        }, 600);
       })
       .catch((error) => {
-        console.log(error);
+        setFormState('error');
+        setTimeout(() => {
+          removeLoader(id);
+        }, 600);
       });
   }
 
@@ -85,8 +107,8 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     setFilesToSubmitList(auxFileList);
   }
 
-  const addFiles = () => {
-    const files = document.getElementById('files').files;
+  const addFiles = (id) => {
+    const files = document.getElementById('files' + id).files;
     const auxFilesList = [];
 
     for (let actualFileIndex = 0; actualFileIndex < files.length; actualFileIndex++) {
@@ -104,9 +126,9 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     <form id={id} encType="multipart/form-data" className="form-container" method="POST" onSubmit={(e) => {
       submitForm(e, id);
     }}>
-      <button className="delete-button" onClick={() => {
+      <span className="delete-button btn-standard" onClick={() => {
         handleDelete(id);
-      }}>Deletar</button>
+      }}>Deletar</span>
 
       <h1 className="subject-form-name">{subjectSelected}</h1>
       <div className="form-row-line">
@@ -122,7 +144,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         <select onChange={handleYearChange} name="year" id="year" className="search-container--element">
           {
             avaibleYears.map(year => (
-              <option value={year}> {year} </option>
+              <option value={year}> {year}º Ano</option>
             ))
           }
 
@@ -131,7 +153,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         <select onChange={handleSemestre} name="semestre" id="semestre" className="search-container--element">
           {
             avaibleSemestres.map(semestre => (
-              <option value={semestre}> {semestre} </option>
+              <option value={semestre}> {semestre}º Semestre </option>
             ))
           }
         </select>
@@ -150,7 +172,13 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
           <option value="Recursos">Recursos</option>
         </select>
       </div>
-      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" className="input-field-text" />
+      <span className="add-more-content btn-standard">
+        <input type="file" name="files" id={"files" + id} className="files-input" onChange={() => {
+          addFiles(id);
+        }} multiple="true" />
+        Adicionar Provas
+      </span>
+      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" className="input-field-text" hidden="true" />
 
 
       <div className="photo-container">
@@ -161,19 +189,30 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
               <button className="individual-file-container-delete-button" onClick={() => {
                 deleteIndividualFile(index);
-              }}>Deletar</button>
+              }}>X</button>
             </div>
-
           ))
         }
-
-
-        <div className="add-more-content">
-          <input type="file" name="files" id="files" onChange={addFiles} multiple="true" />
-        </div>
       </div>
 
-      <button type="submit">Enviar</button>
+      <button type="submit" className="send-form-submission btn-standard">Enviar</button>
+
+      <div id={'sending-form-loader-container' + id} className="sending-form-loader-container">
+        {formState === 'sending' &&
+          <>
+            <div className="loader-spinner"></div>
+            <h2 className="loader-spinner-text">Enviando...</h2>
+          </>
+        }
+
+        {formState === 'error' &&
+          <>
+            <div className="error-signal-container"></div>
+            <h2 className="loader-spinner-text error-text">Algum erro aconteceu</h2>
+          </>
+        }
+
+      </div>
     </form>
   );
 }
