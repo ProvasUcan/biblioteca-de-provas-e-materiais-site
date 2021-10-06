@@ -28,6 +28,10 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  min-height: 100vh;
+}
+.main-app-container {
+  min-height: 100vh;
 }
 
 .header {

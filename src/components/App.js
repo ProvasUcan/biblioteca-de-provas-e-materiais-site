@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 const App = () => {
   const [assigments, setAssigments] = useState([]);
   const [actualCourse, setActualCourse] = useState('');
+  const [isAllCoursesStructurePending, setAllCoursesStructurePending] = useState(true);
   const [actualSubject, setActualSubject] = useState('');
   const [actualDocumentType, setActualDocumentType] = useState('');
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
@@ -39,38 +40,58 @@ const App = () => {
     auxAllCoursesStructure = await auxAllCoursesStructure.json();
 
     setAllCoursesStructure(auxAllCoursesStructure.courses);
+    setAllCoursesStructurePending(false);
   }
+
   useEffect(() => {
-    getAllCoursesStructure();
+      getAllCoursesStructure();
   }, []);
 
   return (
     <Router>
+
       <div className="main-app-container">
-        <NavBar></NavBar>
+        {
+          isAllCoursesStructurePending === false &&
+          <>
+            <NavBar></NavBar>
 
-        <Switch>
-          <Route exact path="/">
-            <SearchContainer
-              handleActualCourseChange={courseChange}
-              handleActualSubjectChange={subjectChange}
-              handleActualDocumentType={documentTypeChange}
-              actualCourse={actualCourse}
-              actualSubject={actualSubject}
-              actualDocumentType={actualDocumentType}
-              handleSearch={searchButton}></SearchContainer>
+            <Switch>
+              <Route exact path="/">
+                <SearchContainer
+                  handleActualCourseChange={courseChange}
+                  handleActualSubjectChange={subjectChange}
+                  handleActualDocumentType={documentTypeChange}
+                  actualCourse={actualCourse}
+                  actualSubject={actualSubject}
+                  actualDocumentType={actualDocumentType}
+                  allCoursesStructure={allCoursesStructure}
+                  handleSearch={searchButton}
+                ></SearchContainer>
 
-              <AssigmentContainer assigments={assigments}></AssigmentContainer>
-          </Route>
+                <AssigmentContainer assigments={assigments}></AssigmentContainer>
+              </Route>
 
-          <Route exact path="/contribute">
-            <Contribute allCoursesStructure={allCoursesStructure}></Contribute>
-          </Route>
-        </Switch>
-
-
-
+              <Route exact path="/contribute">
+                <Contribute allCoursesStructure={allCoursesStructure}></Contribute>
+              </Route>
+            </Switch>
+          </>
+        }
+        {
+          isAllCoursesStructurePending === true &&
+          <div id={'sending-form-loader-container' + 0} className="sending-form-loader-container"
+          style={{display: 'flex', opacity: '1'}}>
+            <>
+              <div className="loader-spinner"></div>
+              <h2 className="loader-spinner-text">Carregando ...</h2>
+            </>
+          </div>
+        }
       </div>
+
+
+
     </Router>
 
   );

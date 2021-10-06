@@ -8,60 +8,72 @@ const SearchContainer = (
     handleActualDocumentType,
     actualCourse,
     actualSubject,
-    actualDocumentType
+    actualDocumentType,
+    allCoursesStructure
   }
 ) => {
 
-  const [actualYear, setActualYear] = useState(0);
-  const [actualSemestre, setActualSemestre] = useState(0);
+  const [actualYear, setActualYear] = useState('');
+  const [actualSemestre, setActualSemestre] = useState('');
   const [courses, setCourses] = useState([]);
   const [years, setYears] = useState([]);
   const [semestres, setSemestres] = useState([]);
   const [subjects, setSubjects] = useState([]);
+  const [coursesStructure, setCoursesStructure] = useState({});
+
 
   const searchStructure = async (selectedCourse = '', selectedYear = 0, selectedSemestre = 0) => {
-    let auxCourse = await fetch('http://192.168.0.29:3000/courses/');
-    auxCourse = (await auxCourse.json()).courses;
-    setCourses(auxCourse);
+    const courses = Object.keys(allCoursesStructure);
 
-    const course = selectedCourse === '' ? auxCourse[0] : actualCourse;
+    if (courses.length !== 0) {
+      setCoursesStructure(allCoursesStructure);
+      setCourses(courses);
 
-    let auxYears = await fetch(`http://192.168.0.29:3000/courses/${course}/years`);
-    auxYears = (await auxYears.json()).years;
-    setYears(auxYears);
+      const course = courses[0];
 
-    const year = selectedYear === 0 ? auxYears[0] : actualYear;
+      const year = Object.keys(allCoursesStructure[course][course])[0]
+      setYears(Object.keys(allCoursesStructure[course][course]));
+      setActualYear(year);
 
-    let auxSemestres = await fetch(`http://192.168.0.29:3000/courses/${course}/${year}/semestres`);
-    auxSemestres = (await auxSemestres.json()).semestres;
-    setSemestres(auxSemestres);
-
-    const semestre = selectedSemestre === 0 ? auxSemestres[0] : actualSemestre;
-    let auxSubjects = await fetch(`http://192.168.0.29:3000/courses/${course}/${year}/${semestre}/subjects`);
-    auxSubjects = (await auxSubjects.json()).subjects;
-    setSubjects(auxSubjects);
+      const semestre = Object.keys(allCoursesStructure[course][course][year])[0];
+      setActualSemestre(semestre);
+      setSemestres(Object.keys(allCoursesStructure[course][course][year]));
 
 
-    setActualYear(year);
-    setActualSemestre(semestre);
+      setSubjects(Object.keys(allCoursesStructure[course][course][year][semestre]));
 
-    handleActualCourseChange(course);
-    handleActualSubjectChange(auxSubjects[0]);
-    handleActualDocumentType('Frequências');
+      handleActualCourseChange(course);
+      handleActualSubjectChange(Object.keys(allCoursesStructure[course][course][year][semestre])[0]);
+      handleActualDocumentType('Frequências');
+    }
+
+
+
   }
 
   const yearChange = function (e) {
-    setActualYear(e.target.value);
-    searchStructure(actualCourse, e.target.value);
+    const year = e.target.value;
+
+    setActualYear(year);
+    setSemestres(Object.keys(allCoursesStructure[actualCourse][actualCourse][year]));
+    setSubjects(Object.keys(allCoursesStructure[actualCourse][actualCourse][year][actualSemestre]));
   }
+
   const semestreChange = function (e) {
-    setActualSemestre(e.target.value);
-    searchStructure(actualCourse, actualYear, e.target.value);
+    const semestre = e.target.value;
+
+    setActualSemestre(semestre);
+    setCourses(Object.keys(allCoursesStructure[actualCourse][actualCourse][actualYear][semestre]));
   }
 
   const courseChange = function (e) {
     handleActualCourseChange(e.target.value);
-    searchStructure(e.target.value);
+    const course = e.target.value;
+
+    handleActualCourseChange(e.target.value);
+    setYears(Object.keys(allCoursesStructure[course][course]));
+    setSemestres(Object.keys(allCoursesStructure[course][course][actualYear]));
+    setSubjects(Object.keys(allCoursesStructure[course][course][actualYear][actualSemestre]));
   }
   const subjectChange = function (e) {
     handleActualSubjectChange(e.target.value);
