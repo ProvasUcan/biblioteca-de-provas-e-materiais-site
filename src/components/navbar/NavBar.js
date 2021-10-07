@@ -7,7 +7,7 @@ const NavBar = () => {
 
       <Switch>
         <Route exact path="/">
-          <Link to="/contribute" className="contribute-link">Contribua</Link>
+          <Link to="/biblioteca-de-provas-e-materiais-site/contribute" className="contribute-link">Contribua</Link>
         </Route>
         <Route exact path="/contribute">
           <Link to="/" className="contribute-link">Voltar</Link>
