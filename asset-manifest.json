@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/biblioteca-de-provas-e-materiais-site/static/css/main.04f3be98.chunk.css",
-    "main.js": "/biblioteca-de-provas-e-materiais-site/static/js/main.ffecec77.chunk.js",
-    "main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/main.ffecec77.chunk.js.map",
+    "main.js": "/biblioteca-de-provas-e-materiais-site/static/js/main.e8933ed2.chunk.js",
+    "main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/main.e8933ed2.chunk.js.map",
     "runtime-main.js": "/biblioteca-de-provas-e-materiais-site/static/js/runtime-main.1c3fd4a9.js",
     "runtime-main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/runtime-main.1c3fd4a9.js.map",
     "static/js/2.663b761d.chunk.js": "/biblioteca-de-provas-e-materiais-site/static/js/2.663b761d.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.1c3fd4a9.js",
     "static/js/2.663b761d.chunk.js",
     "static/css/main.04f3be98.chunk.css",
-    "static/js/main.ffecec77.chunk.js"
+    "static/js/main.e8933ed2.chunk.js"
   ]
 }
