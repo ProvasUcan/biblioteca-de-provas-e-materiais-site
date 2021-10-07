@@ -582,3 +582,9 @@ body {
 .red {
   background-color: #F55151;
 }
+
+@media screen and (max-width: 768px) {
+  .form-container {
+    width: 90%;
+  } 
+}

@@ -89,6 +89,8 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log('jsnjndsj')
+        console.log(data);
         removeLoader(id)
         setTimeout(() => {
           handleDelete(id);
@@ -96,6 +98,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
       })
       .catch((error) => {
         setFormState('error');
+        console.log('Ola mundo')
         setTimeout(() => {
           removeLoader(id);
         }, 600);
@@ -178,7 +181,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         }} multiple="true" />
         Adicionar Provas
       </span>
-      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" className="input-field-text" hidden="true" />
+      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" value="eufraniodiogo146@gmail.com" className="input-field-text" hidden="true" />
 
 
       <div className="photo-container">
