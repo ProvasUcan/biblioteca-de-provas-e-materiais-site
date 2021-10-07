@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/Biblioteca-de-provas-e-materiais-site/static/css/main.af84299e.chunk.css",
+    "main.js": "/Biblioteca-de-provas-e-materiais-site/static/js/main.aa03d876.chunk.js",
+    "main.js.map": "/Biblioteca-de-provas-e-materiais-site/static/js/main.aa03d876.chunk.js.map",
+    "runtime-main.js": "/Biblioteca-de-provas-e-materiais-site/static/js/runtime-main.d57cb98c.js",
+    "runtime-main.js.map": "/Biblioteca-de-provas-e-materiais-site/static/js/runtime-main.d57cb98c.js.map",
+    "static/js/2.663b761d.chunk.js": "/Biblioteca-de-provas-e-materiais-site/static/js/2.663b761d.chunk.js",
+    "static/js/2.663b761d.chunk.js.map": "/Biblioteca-de-provas-e-materiais-site/static/js/2.663b761d.chunk.js.map",
+    "index.html": "/Biblioteca-de-provas-e-materiais-site/index.html",
+    "static/css/main.af84299e.chunk.css.map": "/Biblioteca-de-provas-e-materiais-site/static/css/main.af84299e.chunk.css.map",
+    "static/js/2.663b761d.chunk.js.LICENSE.txt": "/Biblioteca-de-provas-e-materiais-site/static/js/2.663b761d.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Biblioteca-de-provas-e-materiais-site/static/media/Rubik-Regular.da39336c.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d57cb98c.js",
+    "static/js/2.663b761d.chunk.js",
+    "static/css/main.af84299e.chunk.css",
+    "static/js/main.aa03d876.chunk.js"
+  ]
+}
