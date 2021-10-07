@@ -57,7 +57,7 @@ const App = () => {
             <NavBar></NavBar>
 
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/biblioteca-de-provas-e-materiais-site/">
                 <SearchContainer
                   handleActualCourseChange={courseChange}
                   handleActualSubjectChange={subjectChange}
@@ -72,7 +72,7 @@ const App = () => {
                 <AssigmentContainer assigments={assigments}></AssigmentContainer>
               </Route>
 
-              <Route exact path="/contribute">
+              <Route exact path="/biblioteca-de-provas-e-materiais-site/contribute">
                 <Contribute allCoursesStructure={allCoursesStructure}></Contribute>
               </Route>
             </Switch>
