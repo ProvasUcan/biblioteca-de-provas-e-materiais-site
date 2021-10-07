@@ -83,7 +83,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     }
 
 
-    fetch("http://localhost:3000/upload/submission", {
+    fetch("https://provas-ucan.herokuapp.com/upload/submission", {
       method: "POST",
       body: form
     })

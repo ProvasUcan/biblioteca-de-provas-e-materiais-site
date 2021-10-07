@@ -15,7 +15,7 @@ const App = () => {
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
 
   const getAssigments = async () => {
-    let auxAssigments = await fetch(`http://192.168.0.29:3000/courses/${actualCourse}/${actualSubject}/${actualDocumentType}`);
+    let auxAssigments = await fetch(`https://provas-ucan.herokuapp.com/courses/${actualCourse}/${actualSubject}/${actualDocumentType}`);
     auxAssigments = (await auxAssigments.json()).result.filesUrls;
 
     setAssigments(auxAssigments);
@@ -36,7 +36,7 @@ const App = () => {
   }
 
   const getAllCoursesStructure = async function () {
-    let auxAllCoursesStructure = await fetch(`http://192.168.0.29:3000/courses/all`);
+    let auxAllCoursesStructure = await fetch(`https://provas-ucan.herokuapp.com/courses/all`);
     auxAllCoursesStructure = await auxAllCoursesStructure.json();
 
     setAllCoursesStructure(auxAllCoursesStructure.courses);
