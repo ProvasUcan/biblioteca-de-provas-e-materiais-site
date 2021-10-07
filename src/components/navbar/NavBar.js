@@ -6,11 +6,11 @@ const NavBar = () => {
       <h1 className="header-title">Bibliotecas de Provas <span className="span-text-title">UCAN</span></h1>
 
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/biblioteca-de-provas-e-materiais-site">
           <Link to="/biblioteca-de-provas-e-materiais-site/contribute" className="contribute-link">Contribua</Link>
         </Route>
-        <Route exact path="/contribute">
-          <Link to="/" className="contribute-link">Voltar</Link>
+        <Route exact path="/biblioteca-de-provas-e-materiais-site/contribute">
+          <Link to="/biblioteca-de-provas-e-materiais-site" className="contribute-link">Voltar</Link>
         </Route>
       </Switch>
 
