@@ -1,14 +1,77 @@
 import AssigmentElement from "./AssigmentElement";
+import PreviewAssigment from "./PreviewAssigment";
+import { useState } from 'react';
 
-const AssigmentContainer = ({ assigments }) => {
+const Loader = () => {
+
+  return (
+    <div className="volume-div">
+      <div className="volume-bar" id="volume-bar-1">
+
+      </div>
+      <div className="volume-bar" id="volume-bar-1">
+
+      </div>
+      <div className="volume-bar" id="volume-bar-1">
+
+      </div>
+      <div className="volume-bar" id="volume-bar-1">
+
+      </div>
+      <div className="volume-bar" id="volume-bar-1">
+
+      </div>
+      <div className="volume-bar" id="volume-bar-1">
+
+      </div>
+    </div>
+  )
+}
+
+
+const AssigmentContainer = ({ assigments, isPedding }) => {
+  const [actualAssigment, setActualAssigment] = useState(0);
+  const [isPreviewAssigmentShowing, setIsPreviewAssigmentShowing] = useState(false)
+
+  const previewAssigment = (id) => {
+    id = Number(id.replace('assigment-', ''));
+    setActualAssigment(id)
+    setIsPreviewAssigmentShowing(true);
+  }
+
+  const closePreviewAssigment = () => {
+    setIsPreviewAssigmentShowing(false);
+  }
+
+  const nextAssigment = () => {
+    if (actualAssigment + 1 < assigments.length) {
+      setActualAssigment(actualAssigment + 1);
+    }
+  }
+
+  const prevAssigment = () => {
+    console.log('Prev')
+    if (actualAssigment > 0) {
+      setActualAssigment(actualAssigment - 1);
+    }
+  }
+
   return (
     <div className="assigment-container">
-    {
-      assigments.map((assigment, index) => (
-        <AssigmentElement assigment={assigment} id={index}></AssigmentElement>
-      ))
-    }
-      
+      {(!isPedding && assigments.length > 0) &&
+        assigments.map((assigment, index) => (
+          <AssigmentElement assigment={assigment} id={'assigment-' + index} previewAssigment={previewAssigment}></AssigmentElement>
+        ))
+      }
+      {(!isPedding && assigments.length === 0) &&
+        <h2 className="no-assigments-text">Sem provas para esta Disciplina</h2>
+      }
+      {isPedding &&
+        Loader()
+      }
+      { isPreviewAssigmentShowing &&
+        <PreviewAssigment assigment={assigments[actualAssigment]} closePreviewAssigment={closePreviewAssigment} nextAssigment={nextAssigment} prevAssigment={prevAssigment} quantAssigments={assigments.length} actualAssigment={actualAssigment + 1}></PreviewAssigment>
+      }
     </div>
   );
 }

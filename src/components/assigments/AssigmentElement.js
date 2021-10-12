@@ -1,5 +1,5 @@
 import { useState } from "react";
-const AssigmentElement = ({ assigment, id }) => {
+const AssigmentElement = ({ assigment, id, previewAssigment }) => {
   const [isPeding, setPending] = useState(false)
 
   return (
@@ -9,7 +9,9 @@ const AssigmentElement = ({ assigment, id }) => {
       <div className="assigment-item-hover-container">
         <ul className="hover-container-menu">
           <li className="hover-container-menu--item">
-            <img src="./img/fluent_eye-show-24-filled.svg" alt="View assigment" className="hover-container-menu--item-img" />
+            <img src="./img/fluent_eye-show-24-filled.svg" alt="View assigment" className="hover-container-menu--item-img" onClick={() => {
+              previewAssigment(id)
+            }} />
           </li>
 
           <a href={assigment} className="hover-container-menu--item" download={assigment}>

@@ -13,12 +13,15 @@ const App = () => {
   const [actualSubject, setActualSubject] = useState('');
   const [actualDocumentType, setActualDocumentType] = useState('');
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
+  const [isPedding, setIsPedding] = useState(false);
 
   const getAssigments = async () => {
+    setIsPedding(true);
     let auxAssigments = await fetch(`https://provas-ucan.herokuapp.com/courses/${actualCourse}/${actualSubject}/${actualDocumentType}`);
     auxAssigments = (await auxAssigments.json()).result.filesUrls;
 
     setAssigments(auxAssigments);
+    setIsPedding(false)
   }
 
   const searchButton = async () => {
@@ -69,7 +72,7 @@ const App = () => {
                   handleSearch={searchButton}
                 ></SearchContainer>
 
-                <AssigmentContainer assigments={assigments}></AssigmentContainer>
+                <AssigmentContainer assigments={assigments} isPedding={isPedding}></AssigmentContainer>
               </Route>
 
               <Route exact path="/biblioteca-de-provas-e-materiais-site/contribute">
