@@ -730,6 +730,9 @@ body {
   font-size: 1.6rem;
   align-self: center;
 }
+.invisible-link {
+  text-decoration: none;
+}
 
 .no-assigments-text {
   font-size: 2.4rem;

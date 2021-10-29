@@ -3,9 +3,12 @@ import SearchContainer from "./search/SearchContainer";
 import AssigmentContainer from "./assigments/AssigmentContainer";
 import Contribute from "./contribute/Contribute";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { apiBaseUrl } from "../config/apiConfig";
 
+export const SearchContext = React.createContext({})
+
+const getAssigmentsFetcher = () => Promise.resolve([])
 
 const App = () => {
   const [assigments, setAssigments] = useState([]);
@@ -15,6 +18,18 @@ const App = () => {
   const [actualDocumentType, setActualDocumentType] = useState('');
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
   const [isPedding, setIsPedding] = useState(false);
+
+  const handleGetAssigments = async () => {
+    setIsPedding(true);
+    try {
+      const auxAssigments = await getAssigmentsFetcher();
+      setAssigments(auxAssigments);
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsPedding(false);
+    }
+  }
 
   const getAssigments = async () => {
     setIsPedding(true);
@@ -48,7 +63,7 @@ const App = () => {
   }
 
   useEffect(() => {
-      getAllCoursesStructure();
+    getAllCoursesStructure();
   }, []);
 
   return (
@@ -73,7 +88,13 @@ const App = () => {
                   handleSearch={searchButton}
                 ></SearchContainer>
 
-                <AssigmentContainer assigments={assigments} isPedding={isPedding}></AssigmentContainer>
+                <SearchContext.Provider value={
+                  { name: `${actualCourse} - ${actualSubject} - ${actualDocumentType}` }
+                }>
+                  <AssigmentContainer assigments={assigments} isPedding={isPedding}></AssigmentContainer>
+
+                </SearchContext.Provider>
+
               </Route>
 
               <Route exact path="/biblioteca-de-provas-e-materiais-site/contribute">
@@ -85,7 +106,7 @@ const App = () => {
         {
           isAllCoursesStructurePending === true &&
           <div id={'sending-form-loader-container' + 0} className="sending-form-loader-container"
-          style={{display: 'flex', opacity: '1'}}>
+            style={{ display: 'flex', opacity: '1' }}>
             <>
               <div className="loader-spinner"></div>
               <h2 className="loader-spinner-text">Carregando ...</h2>
