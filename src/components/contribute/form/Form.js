@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { apiBaseUrl } from "../../../config/apiConfig";
 
 const Form = ({ id, handleDelete, allCoursesStructure }) => {
   const [avaibleCourses, setAvailableCourses] = useState([]);
@@ -83,14 +84,12 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     }
 
 
-    fetch("https://provas-ucan.herokuapp.com/submission/upload", {
-      method: "POST",
+    fetch(`${apiBaseUrl}/submission/upload`, {
+      method: "POST", 
       body: form
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('jsnjndsj')
-        console.log(data);
         removeLoader(id)
         setTimeout(() => {
           handleDelete(id);
@@ -98,7 +97,6 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
       })
       .catch((error) => {
         setFormState('error');
-        console.log('Ola mundo')
         setTimeout(() => {
           removeLoader(id);
         }, 600);
@@ -129,7 +127,8 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     <form id={id} encType="multipart/form-data" className="form-container" method="POST" onSubmit={(e) => {
       submitForm(e, id);
     }}>
-      <span className="delete-button btn-standard" onClick={() => {
+      <span className="delete-button btn-standard" onClick={(e) => {
+        e.stopPropagation();
         handleDelete(id);
       }}>Deletar</span>
 
@@ -176,12 +175,13 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         </select>
       </div>
       <span className="add-more-content btn-standard">
-        <input type="file" name="files" id={"files" + id} className="files-input" onChange={() => {
+        <input type="file" name="files" id={"files" + id} className="files-input" onChange={(e) => {
+          e.stopPropagation();
           addFiles(id);
-        }} multiple="true" />
+        }} multiple={true} />
         Adicionar Provas
       </span>
-      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" value="eufraniodiogo146@gmail.com" className="input-field-text" hidden="true" />
+      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" value="eufraniodiogo146@gmail.com" className="input-field-text" hidden={true} />
 
 
       <div className="photo-container">
@@ -190,7 +190,8 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
             <div className="individual-file-container">
               <img src={URL.createObjectURL(file)} alt="" className="file-preview-img" />
 
-              <button className="individual-file-container-delete-button" onClick={() => {
+              <button className="individual-file-container-delete-button" onClick={(e) => {
+                e.stopPropagation();
                 deleteIndividualFile(index);
               }}>X</button>
             </div>
