@@ -4,6 +4,7 @@ import AssigmentContainer from "./assigments/AssigmentContainer";
 import Contribute from "./contribute/Contribute";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { apiBaseUrl } from "../config/apiConfig";
 
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
 
   const getAssigments = async () => {
     setIsPedding(true);
-    let auxAssigments = await fetch(`https://provas-ucan.herokuapp.com/courses/${actualCourse}/${actualSubject}/${actualDocumentType}`);
+    let auxAssigments = await fetch(`${apiBaseUrl}/courses/${actualCourse}/${actualSubject}/${actualDocumentType}`);
     auxAssigments = (await auxAssigments.json()).result.filesUrls;
 
     setAssigments(auxAssigments);
@@ -39,7 +40,7 @@ const App = () => {
   }
 
   const getAllCoursesStructure = async function () {
-    let auxAllCoursesStructure = await fetch(`https://provas-ucan.herokuapp.com/courses/all`);
+    let auxAllCoursesStructure = await fetch(`${apiBaseUrl}/courses/all`);
     auxAllCoursesStructure = await auxAllCoursesStructure.json();
 
     setAllCoursesStructure(auxAllCoursesStructure.courses);

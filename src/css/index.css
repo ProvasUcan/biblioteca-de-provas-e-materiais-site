@@ -668,8 +668,33 @@ body {
 
 .top-part-preview {
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.preview-button {
+  padding: 1rem 2rem;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+.download-button-preview-container {
+  background-color: #00A7CCcc;
+}
+.download-button-preview-container:hover {
+  background-color: #00a7cc;
+}
+
+.close-button-preview-container {
+  background-color: #f55151cc;
+  margin: 0 1rem;
+}
+.close-button-preview-container:hover {
+  background-color: #f55151;
 }
 
 .preview-container--main-child {
@@ -685,7 +710,26 @@ body {
   object-fit: cover;
 }
 
+.control-button {
+  padding: 2rem;
+  font-size: 1.4rem;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
 
+.prev-assigment {
+  margin-left: 1rem;
+}
+.next-assigment {
+  margin-right: 1rem;
+}
+
+.preview-container-counter {
+  text-align: center;
+  font-size: 1.6rem;
+  align-self: center;
+}
 
 .no-assigments-text {
   font-size: 2.4rem;

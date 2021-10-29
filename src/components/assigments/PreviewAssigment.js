@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 
 function PreviewAssigment({ assigment, closePreviewAssigment, nextAssigment, prevAssigment, quantAssigments, actualAssigment }) {
   return ReactDOM.createPortal(
-    <div id="assigment-preview-root">
+    <div id="assigment-preview-root" onClick={closePreviewAssigment}>
       <div className="preview-container">
         <div className="top-part-preview">
-          <button className="download-button-preview-container">Download</button>
-          <button className="close-button-preview-container" onClick={closePreviewAssigment}>Close</button>
+          <button className="download-button-preview-container preview-button">Download</button>
+          <button className="close-button-preview-container preview-button" onClick={closePreviewAssigment}>Close</button>
         </div>
 
         <div className="preview-container--main-child">
@@ -17,7 +17,7 @@ function PreviewAssigment({ assigment, closePreviewAssigment, nextAssigment, pre
 
           <img src={assigment} alt="" className="preview-assigment-img" />
 
-          <button className="control-button prev-assigment" onClick={nextAssigment}>
+          <button className="control-button next-assigment" onClick={nextAssigment}>
             &gt;
           </button>
         </div>
@@ -31,3 +31,8 @@ function PreviewAssigment({ assigment, closePreviewAssigment, nextAssigment, pre
 }
 
 export default PreviewAssigment
+
+
+const styles = {
+
+}

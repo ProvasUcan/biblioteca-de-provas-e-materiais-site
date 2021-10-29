@@ -43,14 +43,17 @@ const AssigmentContainer = ({ assigments, isPedding }) => {
     setIsPreviewAssigmentShowing(false);
   }
 
-  const nextAssigment = () => {
+  const nextAssigment = (e) => {
+    e.stopPropagation();
+
     if (actualAssigment + 1 < assigments.length) {
       setActualAssigment(actualAssigment + 1);
     }
   }
 
-  const prevAssigment = () => {
-    console.log('Prev')
+  const prevAssigment = (e) => {
+    e.stopPropagation();
+    
     if (actualAssigment > 0) {
       setActualAssigment(actualAssigment - 1);
     }
