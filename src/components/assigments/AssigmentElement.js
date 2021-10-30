@@ -1,6 +1,10 @@
-import { useState } from "react";
-const AssigmentElement = ({ assigment, id, previewAssigment }) => {
+import { useState, useContext } from "react";
+import { SearchContext } from "../App";
+
+const AssigmentElement = ({ assigment, id, previewAssigment, downloadAssigment }) => {
   const [isPeding, setPending] = useState(false)
+  const searchContext = useContext(SearchContext)
+  console.log(searchContext.name)
 
   return (
     <div className="assigment-item">
@@ -14,9 +18,11 @@ const AssigmentElement = ({ assigment, id, previewAssigment }) => {
             }} />
           </li>
 
-          <a href={assigment} className="hover-container-menu--item" download={assigment}>
+          <li onClick={() => {
+            downloadAssigment(assigment, searchContext.name)
+          }} className="hover-container-menu--item">
             <img src="./img/akar-icons_download.svg" alt="Download assigment" className="hover-container-menu--item-img" />
-          </a>
+          </li>
         </ul>
       </div>
     </div>

@@ -29,7 +29,7 @@ const Loader = () => {
 }
 
 
-const AssigmentContainer = ({ assigments, isPedding }) => {
+const AssigmentContainer = ({ assigments, isPedding, downloadAssigment }) => {
   const [actualAssigment, setActualAssigment] = useState(0);
   const [isPreviewAssigmentShowing, setIsPreviewAssigmentShowing] = useState(false)
 
@@ -63,7 +63,7 @@ const AssigmentContainer = ({ assigments, isPedding }) => {
     <div className="assigment-container">
       {(!isPedding && assigments.length > 0) &&
         assigments.map((assigment, index) => (
-          <AssigmentElement assigment={assigment} id={'assigment-' + index} previewAssigment={previewAssigment}></AssigmentElement>
+          <AssigmentElement assigment={assigment} id={'assigment-' + index} previewAssigment={previewAssigment} downloadAssigment={downloadAssigment}></AssigmentElement>
         ))
       }
       {(!isPedding && assigments.length === 0) &&

@@ -448,6 +448,46 @@ body {
   color: #f55151;
 }
 
+.sended-signal-container {
+  width: 12.8rem;
+  height: 12.8rem;
+  border-radius: 50%;
+  border: 0.5rem solid #00b3ff5e;
+  border-top: 0.5rem solid #00B2FF;
+  position: relative;
+}
+
+.sended-signal-container::after {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 50%;
+  transform: rotate(0deg);
+  background-color: #00cc33;
+  right: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  bottom: 0;
+  border-radius: 2rem;
+}
+
+.sended-signal-container::before {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 100%;
+  transform: rotate(0deg);
+  background-color: #00cc33;
+  right: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  bottom: 0;
+  border-radius: 2rem;
+}
+
+.sending-form-loader-container {
+  display: flex;
+  opacity: 1;
+}
+
 .menu-button {
   position: relative;
   display: inline-block;

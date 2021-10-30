@@ -5,6 +5,7 @@ import Contribute from "./contribute/Contribute";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import { apiBaseUrl } from "../config/apiConfig";
+import { download } from "../helpers/downloadHelper";
 
 export const SearchContext = React.createContext({})
 
@@ -91,7 +92,7 @@ const App = () => {
                 <SearchContext.Provider value={
                   { name: `${actualCourse} - ${actualSubject} - ${actualDocumentType}` }
                 }>
-                  <AssigmentContainer assigments={assigments} isPedding={isPedding}></AssigmentContainer>
+                  <AssigmentContainer assigments={assigments} isPedding={isPedding} downloadAssigment={download}></AssigmentContainer>
 
                 </SearchContext.Provider>
 

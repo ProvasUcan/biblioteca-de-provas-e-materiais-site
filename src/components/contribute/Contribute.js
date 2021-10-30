@@ -23,7 +23,7 @@ const Contribute = ({ allCoursesStructure }) => {
   }
 
   function deleteForm(id) {
-    setForms(forms.filter(form => form.id !== id))
+    setForms(forms.filter(form => form.formId !== id))
   }
 
   return (
@@ -35,7 +35,7 @@ const Contribute = ({ allCoursesStructure }) => {
       <div className="contribute-form-container">
         {
           forms.map((form, index) => (
-            <Form id={form.formId} key={index} handleDelete={form.handleDelete} allCoursesStructure={form.allCoursesStructure}></Form>
+            <Form id={form.formId} key={form.formId} handleDelete={form.handleDelete} allCoursesStructure={form.allCoursesStructure}></Form>
           ))
         }
       </div>

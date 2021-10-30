@@ -8,7 +8,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
   const [avaibleSubjects, setAvaibleSubjects] = useState([]);
   const [filesToSubmitList, setFilesToSubmitList] = useState([]);
 
-  const [formState, setFormState] = useState('');
+  const [formState, setFormState] = useState('sended');
 
   const [courseSelected, setCourseSelected] = useState('');
   const [yearSelected, setYearSelected] = useState('');
@@ -85,7 +85,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
 
     fetch(`${apiBaseUrl}/submission/upload`, {
-      method: "POST", 
+      method: "POST",
       body: form
     })
       .then((res) => res.json())
@@ -134,7 +134,11 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
       <h1 className="subject-form-name">{subjectSelected}</h1>
       <div className="form-row-line">
-        <select name="course" id="course" className="search-container--element" >
+        <select
+          name="course"
+          id="course"
+          className="search-container--element"
+        >
           {
             avaibleCourses.map(course => (
               <option value={course}> {course} </option>
@@ -143,7 +147,12 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
         </select>
 
-        <select onChange={handleYearChange} name="year" id="year" className="search-container--element">
+        <select
+          name="year"
+          id="year"
+          className="search-container--element"
+          onChange={handleYearChange}
+        >
           {
             avaibleYears.map(year => (
               <option value={year}> {year}º Ano</option>
@@ -152,7 +161,12 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
         </select>
 
-        <select onChange={handleSemestre} name="semestre" id="semestre" className="search-container--element">
+        <select
+          name="semestre"
+          id="semestre"
+          className="search-container--element"
+          onChange={handleSemestre}
+        >
           {
             avaibleSemestres.map(semestre => (
               <option value={semestre}> {semestre}º Semestre </option>
@@ -160,7 +174,14 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
           }
         </select>
 
-        <select name="subject" id="subject" className="search-container--element">
+        <select
+          name="subject"
+          id="subject"
+          className="search-container--element"
+          onChange={(e) => {
+            setSubjectSelected(e.target.value)
+          }}
+        >
           {
             avaibleSubjects.map(subject => (
               <option value={subject}> {subject} </option>
@@ -168,7 +189,11 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
           }
         </select>
 
-        <select name="documentType" id="documentType" className="search-container--element">
+        <select
+          name="documentType"
+          id="documentType"
+          className="search-container--element"
+        >
           <option value="Frequências">Frequências</option>
           <option value="Exames">Exames</option>
           <option value="Recursos">Recursos</option>
@@ -191,6 +216,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
               <img src={URL.createObjectURL(file)} alt="" className="file-preview-img" />
 
               <button className="individual-file-container-delete-button" onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 deleteIndividualFile(index);
               }}>X</button>
@@ -202,6 +228,12 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
       <button type="submit" className="send-form-submission btn-standard">Enviar</button>
 
       <div id={'sending-form-loader-container' + id} className="sending-form-loader-container">
+        {formState === 'sended' &&
+          <>
+            <div className="sended-signal-container"></div>
+            <h2 className="loader-spinner-text">Enviado &#128151;</h2>
+          </>
+        }
         {formState === 'sending' &&
           <>
             <div className="loader-spinner"></div>
