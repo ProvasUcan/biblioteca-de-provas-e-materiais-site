@@ -63,7 +63,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     document.getElementById('sending-form-loader-container' + id).style.opacity = '0';
     setTimeout(() => {
       document.getElementById('sending-form-loader-container' + id).style.display = 'none';
-    }, 600);
+    }, 1505);
   }
 
   const submitForm = (e, id) => {
@@ -90,10 +90,10 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        removeLoader(id)
+        setFormState('sended');
         setTimeout(() => {
           handleDelete(id);
-        }, 600);
+        }, 1500);
       })
       .catch((error) => {
         setFormState('error');

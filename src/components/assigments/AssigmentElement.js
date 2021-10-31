@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { apiBaseUrl } from "../../config/apiConfig";
 import { SearchContext } from "../App";
 
 const AssigmentElement = ({ assigment, id, previewAssigment, downloadAssigment }) => {
@@ -8,7 +9,7 @@ const AssigmentElement = ({ assigment, id, previewAssigment, downloadAssigment }
 
   return (
     <div className="assigment-item">
-      <img id={'img-' + id} src={assigment} alt="" className="assigment-item-preview" />
+      <img id={'img-' + id} src={apiBaseUrl + '/' + assigment} alt="" className="assigment-item-preview" />
 
       <div className="assigment-item-hover-container">
         <ul className="hover-container-menu">
