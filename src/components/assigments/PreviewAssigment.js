@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import ReactDOM from 'react-dom'
 import { download } from '../../helpers/downloadHelper'
-import { SearchContext } from '../App'
+import { SearchContext } from '../../pages/HomePage/HomePage'
 
 function PreviewAssigment({ assigment, closePreviewAssigment, nextAssigment, prevAssigment, quantAssigments, actualAssigment }) {
   const searchContext = useContext(SearchContext)
