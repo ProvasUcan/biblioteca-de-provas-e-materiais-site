@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { apiBaseUrl } from "../../../config/apiConfig";
+import { generateRemoteDestFolder } from "../../../helpers/form/formHelper";
+import { uploadAssigments } from "../../../services/remote/assigments/assigmentsRemote";
 
 const Form = ({ id, handleDelete, allCoursesStructure }) => {
   const [avaibleCourses, setAvailableCourses] = useState([]);
@@ -66,41 +67,43 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     }, 1505);
   }
 
-  const submitForm = (e, id) => {
+  const submitForm = async (e, id) => {
     e.preventDefault();
     setFormState('sending');
     activeLoader(id);
-    var form = new FormData();
 
-    const destFolder = `${document.getElementById('course').value},${document.getElementById('year').value},${document.getElementById('semestre').value}, ${document.getElementById('subject').value}, ${document.getElementById('documentType').value}`;
-    const userEmail = document.getElementById('userEmail').value
-    const files = document.getElementById('files' + id).files;
+    const files = document.getElementById('files' + id).files
 
-    form.append('destFolder', destFolder);
-    form.append('userEmail', userEmail);
-
-    for (let actualFileIndex = 0; actualFileIndex < files.length; actualFileIndex++) {
-      form.append('files', files[actualFileIndex]);
-    }
-
-
-    fetch(`${apiBaseUrl}/submission/upload`, {
-      method: "POST",
-      body: form
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    if (files.length !== 0) {
+      const remoteDestFolder = generateRemoteDestFolder(
+        document.getElementById('course').value,
+        document.getElementById('year').value,
+        document.getElementById('semestre').value,
+        document.getElementById('subject').value,
+        document.getElementById('documentType').value
+      )
+  
+  
+      const response = await uploadAssigments(
+        remoteDestFolder,
+        files
+      )
+      
+      if (response) {
         setFormState('sended');
         setTimeout(() => {
           handleDelete(id);
-        }, 1500);
-      })
-      .catch((error) => {
+        }, 10000);
+      } else {
         setFormState('error');
         setTimeout(() => {
           removeLoader(id);
-        }, 600);
-      });
+        }, 10000);
+      }
+    } else {
+      
+    }
+    
   }
 
   const deleteIndividualFile = (index) => {
@@ -206,14 +209,17 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         }} multiple={true} />
         Adicionar Provas
       </span>
-      <input type="email" name="userEmail" id="userEmail" placeholder="example@gmail.com" value="eufraniodiogo146@gmail.com" className="input-field-text" hidden={true} />
 
 
       <div className="photo-container">
         {
           filesToSubmitList.map((file, index) => (
             <div className="individual-file-container">
-              <img src={URL.createObjectURL(file)} alt="" className="file-preview-img" />
+              <img
+                src={URL.createObjectURL(file)}
+                alt=""
+                className="file-preview-img"
+              />
 
               <button className="individual-file-container-delete-button" onClick={(e) => {
                 e.preventDefault();
@@ -231,20 +237,20 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         {formState === 'sended' &&
           <>
             <div className="sended-signal-container"></div>
-            <h2 className="loader-spinner-text">Enviado &#128151;</h2>
+            <h2 className="loader-spinner-text">Sua submissão foi enviada &#128151;<br/>Nossos administradores a verificarão</h2>
           </>
         }
         {formState === 'sending' &&
           <>
             <div className="loader-spinner"></div>
-            <h2 className="loader-spinner-text">Enviando...</h2>
+            <h2 className="loader-spinner-text">Enviando Submissão...</h2>
           </>
         }
 
         {formState === 'error' &&
           <>
             <div className="error-signal-container"></div>
-            <h2 className="loader-spinner-text error-text">Algum erro aconteceu</h2>
+            <h2 className="loader-spinner-text error-text">Algum erro aconteceu<br/>Tente mais tarde!</h2>
           </>
         }
 
