@@ -3,12 +3,12 @@ import { apiBaseUrl } from "../../config/apiConfig";
 import { SearchContext } from "../../pages/HomePage/HomePage";
 
 const AssigmentElement = ({ assigment, id, previewAssigment, downloadAssigment }) => {
-  const [isPeding, setPending] = useState(false)
   const searchContext = useContext(SearchContext)
-  console.log(searchContext.name)
 
   return (
-    <div className="assigment-item">
+    <div className="assigment-item" onClick={() => {
+      previewAssigment(id)
+    }}>
       <img id={'img-' + id} src={apiBaseUrl + '/' + assigment} alt="" className="assigment-item-preview" />
 
       <div className="assigment-item-hover-container">
@@ -20,7 +20,7 @@ const AssigmentElement = ({ assigment, id, previewAssigment, downloadAssigment }
           </li>
 
           <li onClick={() => {
-            downloadAssigment(assigment, searchContext.name)
+            downloadAssigment(apiBaseUrl + '/' + assigment, searchContext.name)
           }} className="hover-container-menu--item">
             <img src="./img/akar-icons_download.svg" alt="Download assigment" className="hover-container-menu--item-img" />
           </li>

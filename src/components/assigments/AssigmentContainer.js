@@ -53,7 +53,7 @@ const AssigmentContainer = ({ assigments, isPedding, downloadAssigment }) => {
 
   const prevAssigment = (e) => {
     e.stopPropagation();
-    
+
     if (actualAssigment > 0) {
       setActualAssigment(actualAssigment - 1);
     }
@@ -67,12 +67,12 @@ const AssigmentContainer = ({ assigments, isPedding, downloadAssigment }) => {
         ))
       }
       {(!isPedding && assigments.length === 0) &&
-        <h2 className="no-assigments-text">Sem provas para esta Disciplina</h2>
+        <h2 className="no-assigments-text">Sem resultados!</h2>
       }
       {isPedding &&
         Loader()
       }
-      { isPreviewAssigmentShowing &&
+      {isPreviewAssigmentShowing &&
         <PreviewAssigment assigment={assigments[actualAssigment]} closePreviewAssigment={closePreviewAssigment} nextAssigment={nextAssigment} prevAssigment={prevAssigment} quantAssigments={assigments.length} actualAssigment={actualAssigment + 1}></PreviewAssigment>
       }
     </div>
