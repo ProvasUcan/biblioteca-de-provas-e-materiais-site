@@ -31,7 +31,23 @@ const Contribute = ({ getAllCoursesStructure }) => {
   }
 
   function deleteForm(id) {
-    setForms(forms.filter(form => form.formId !== id))
+    setForms((prev) => {
+      const auxForms = [];
+
+      const deleteIndex = Number(id.split('-')[1]);
+
+      for (let i = 0; i < forms.length; i++) {
+        const deleteIndexForm = Number(forms[i].formId.split('-')[1]);
+
+        console.log(deleteIndexForm, ' !== ', deleteIndex, ', ', deleteIndexForm !== deleteIndex)
+        if (deleteIndexForm !== deleteIndex) {
+          auxForms.push(forms[i])
+        }
+      }
+
+      console.log(auxForms)
+      return auxForms;
+    })
   }
 
   useEffect(() => {
@@ -40,9 +56,12 @@ const Contribute = ({ getAllCoursesStructure }) => {
 
   return (
     <div className="contribute-container">
-      <img src="./img/undraw_Team_re_0bfe.svg" alt="Contributers" className="contributers-ilustration" />
+      <img src="./img/undraw_Team_re_0bfe.svg" alt="Error not found" className="contributers-ilustration" />
 
-      <button className="create-new-form" onClick={createForm}>Criar Form</button>
+      <div className="text-container">
+        <h1 className="desc-text">Aqui a sua contribuição e ajuda têm valor </h1>
+      </div>
+      <button className="create-new-form" onClick={createForm}>Contribuir</button>
 
       <div className="contribute-form-container">
         {
