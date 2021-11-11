@@ -70,10 +70,19 @@ const SearchContainer = (
     handleActualCourseChange(e.target.value);
     const course = e.target.value;
 
-    handleActualCourseChange(e.target.value);
-    setYears(Object.keys(allCoursesStructure[course][course]));
-    setSemestres(Object.keys(allCoursesStructure[course][course][actualYear]));
-    setSubjects(Object.keys(allCoursesStructure[course][course][actualYear][actualSemestre]));
+    try {
+      const years = Object.keys(allCoursesStructure[course][course])
+      const semestres = Object.keys(allCoursesStructure[course][course][actualYear])
+      const subjects = Object.keys(allCoursesStructure[course][course][actualYear][actualSemestre])
+
+      setYears(years);
+      setSemestres(semestres);
+      setSubjects(subjects);
+    } catch (err) {
+      setYears([]);
+      setSemestres([]);
+      setSubjects([]);
+    }
   }
   const subjectChange = function (e) {
     handleActualSubjectChange(e.target.value);
