@@ -1,22 +1,15 @@
 import NavBar from "./navbar/NavBar";
-import SearchContainer from "./search/SearchContainer";
-import AssigmentContainer from "./assigments/AssigmentContainer";
-import Contribute from "./contribute/Contribute";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import React, { useState, useEffect } from "react";
-import { apiBaseUrl } from "../config/apiConfig";
-import { download } from "../helpers/downloadHelper";
-import AboutPage from "../pages/AboutPage/AboutPage";
-import LoginPage from "../pages/Login/LoginPage";
-import UserGuard from "../services/security/guards/userGuard";
-import { UserPage } from "../pages/UserPage/UserPage";
-import HomePage from "../pages/HomePage/HomePage";
-import { getAllCoursesStructure } from "../services/remote/course/courseRemote";
-import { getAssigments } from "../services/remote/assigments/assigmentsRemote";
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import React from "react";
+
+
+
+import MainPublicRouter from "../routes/public/MainPublicRouter";
+import MainPrivateRouter from "../routes/private/MainPrivateRouter";
+import MainAdminRouter from "../routes/admin/MainAdminRouter";
+import { isAdminUser } from "../services/auth/authService";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-
   return (
     <Router>
 
@@ -26,22 +19,18 @@ const App = () => {
             <NavBar></NavBar>
 
             <Switch>
-              <Route exact path="/biblioteca-de-provas-e-materiais-site/">
-                <HomePage 
-                getAllCoursesStructure={getAllCoursesStructure}
-                getAssigments={getAssigments}
-                ></HomePage>
-              </Route>
-
-              <Route exact path="/biblioteca-de-provas-e-materiais-site/contribute">
-                <Contribute getAllCoursesStructure={getAllCoursesStructure}></Contribute>
-              </Route>
-
-              <Route exact path="/biblioteca-de-provas-e-materiais-site/about" component={AboutPage}/>
-              <Route exact path="/biblioteca-de-provas-e-materiais-site/login" component={LoginPage}/>
-              <UserGuard path="/biblioteca-de-provas-e-materiais-site/user" component={UserPage} auth={isAuthenticated}>
-              </UserGuard>
+              <MainPrivateRouter></MainPrivateRouter>
             </Switch>
+            <Switch>
+              <MainPublicRouter></MainPublicRouter>
+            </Switch>
+            <Switch>
+              <MainAdminRouter
+                adminAuth={isAdminUser}
+              ></MainAdminRouter>
+            </Switch>
+
+
           </>
         }
       </div>
