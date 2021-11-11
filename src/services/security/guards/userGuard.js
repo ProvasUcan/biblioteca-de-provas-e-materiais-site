@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
-const UserGuard = ({ component: Component, auth, ...rest }) => {
-  console.log(auth)
+const UserGuard = ({ component: Component, auth, getUserInfo, ...rest }) => {
   return (
-    <Route {...rest} render={(props) => (
-      auth === true ? <Component {...props}></Component> : <Redirect to='/login' />
-    )}>
+    <Route {...rest} render={(props) => {
+      return (auth === true ? <Component getUserInfo={getUserInfo} {...props}></Component> : <Redirect to='/biblioteca-de-provas-e-materiais-site/login' />)
+    }
+    }>
     </Route>
   )
 }
