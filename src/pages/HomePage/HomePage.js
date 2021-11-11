@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import AssigmentContainer from '../../components/assigments/AssigmentContainer';
 import SearchContainer from '../../components/search/SearchContainer'
-import { apiBaseUrl } from '../../config/apiConfig';
-import { download } from '../../helpers/downloadHelper';
+import { download } from '../../helpers/download/downloadHelper';
 
 export const SearchContext = React.createContext({})
 
 
 function HomePage({ getAllCoursesStructure, getAssigments }) {
-  const [assigments, setAssigments] = useState([]);
+  const [assigments, setAssigments] = useState([]); 
   const [actualCourse, setActualCourse] = useState('');
   const [isAllCoursesStructurePending, setAllCoursesStructurePending] = useState(true);
   const [actualSubject, setActualSubject] = useState('');
