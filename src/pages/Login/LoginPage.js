@@ -2,39 +2,35 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { apiBaseUrl } from '../../config/apiConfig'
 import readerImage from '../../assets/images/undraw_book_lover_mkck.svg'
+import { login } from '../../services/remote/auth/login'
 //
 function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [emailIsOn, setEmailIsOn] = useState(false)
+  const [passwordIsOn, setPasswordIsOn] = useState(false)
 
-  const loginSubmit = (e) => {
+  const loginSubmit = async (e) => {
     e.preventDefault()
-    console.log(e)
 
-    fetch(`${apiBaseUrl}/auth/login`, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: email,
-        password: password
-      }),
-      headers: {
-        'Content-Type': 'application/json'
+    try {
+      const response = await login({
+        email,
+        password
+      })
+
+      if (response.status === 200) {
+        localStorage.setItem('auth-token-biblioteca-de-provas', response.token)
+        window.location.pathname = 'biblioteca-de-provas-e-materiais-site/'
+      } else {
+        alert('Dados incorrectos')
       }
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 200) {
-          window.location.pathname = 'biblioteca-de-provas-e-materiais-site/user/'
-        } else {
-          alert('Dados incorrectos')
-        }
-        
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+
   return (
     <div style={styles.loginContainer}>
       <img srcSet={readerImage} style={styles.backgroundImage} alt="" />
@@ -60,10 +56,6 @@ function LoginPage() {
               value={email}
               onChange={(e) => {
                 const text = e.target.value;
-                console.log('Email: ', text)
-
-
-                setEmailIsOn(text.trim.length !== 0 ? true : false)
                 setEmail(text)
               }}
             />
@@ -78,8 +70,6 @@ function LoginPage() {
               value={password}
               onChange={(e) => {
                 const text = e.target.value;
-                console.log('Password: ', text)
-
                 setPassword(text)
               }}
             />
@@ -150,6 +140,7 @@ const styles = {
     position: 'absolute',
     width: '50%',
     left: '50%',
-    transform: 'translateX(-50%)'
+    transform: 'translateX(-50%)',
+    zIndex: -1
   }
 }
