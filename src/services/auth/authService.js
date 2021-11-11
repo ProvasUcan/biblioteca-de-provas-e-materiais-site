@@ -1,22 +1,23 @@
 import { apiBaseUrl } from "../../config/apiConfig"
+import { getActualUserData } from "../remote/user/user"
 
 export const isValidToken = async () => {
-  await fetch(`${apiBaseUrl}/auth`, {
+  const res = await fetch(`${apiBaseUrl}/auth`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
     }
   })
-  .then(res => res.json())
-  .then(data => {
-    return data.status === 200
-  })
-  .catch(err => {
-    console.error(err)
-  })
-  return false
+  const data = await res.json()
+
+  return data.status === 200
 }
 
-export const isTheCorrectAccout = async () => {
-
+export const isAdminUser = async () => {
+    const res = await getActualUserData();
+    if (res.data !== undefined) {
+      return res.data.user.roles.includes('admin')
+    }
+    return false;
 }
