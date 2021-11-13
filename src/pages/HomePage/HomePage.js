@@ -7,7 +7,7 @@ export const SearchContext = React.createContext({})
 
 
 function HomePage({ getAllCoursesStructure, getAssigments }) {
-  const [assigments, setAssigments] = useState([]); 
+  const [assigments, setAssigments] = useState([]);
   const [actualCourse, setActualCourse] = useState('');
   const [isAllCoursesStructurePending, setAllCoursesStructurePending] = useState(true);
   const [actualSubject, setActualSubject] = useState('');
@@ -50,10 +50,14 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
   }
 
   const handleAllCourseStructure = async function () {
-    const courses = await getAllCoursesStructure();
+    try {
+      const courses = await getAllCoursesStructure();
 
-    setAllCoursesStructure(courses);
-    setAllCoursesStructurePending(false);
+      setAllCoursesStructure(courses);
+      setAllCoursesStructurePending(false);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {

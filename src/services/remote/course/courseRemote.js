@@ -1,10 +1,10 @@
 import { apiBaseUrl } from "../../../config/apiConfig";
 
 export const getAllCoursesStructure = async function () {
+  console.log('all courses')
   let auxAllCoursesStructure = await fetch(`${apiBaseUrl}/course/all`);
   auxAllCoursesStructure = await auxAllCoursesStructure.json();
 
-  console.log('sksak ', auxAllCoursesStructure)
   return auxAllCoursesStructure.courses;
 }
 
