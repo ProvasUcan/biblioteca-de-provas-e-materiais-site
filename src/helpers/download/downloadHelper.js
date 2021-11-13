@@ -1,5 +1,8 @@
 export const download = (url, fileName) => {
+  console.log('url ', url, ' fileName ', fileName)
+
   var xhr = new XMLHttpRequest();
+  const extension = url.split('.')[url.split('.').length - 1];
   xhr.open("GET", url, true);
   xhr.responseType = "blob";
   xhr.onload = function () {
@@ -7,7 +10,7 @@ export const download = (url, fileName) => {
     var imageUrl = urlCreator.createObjectURL(this.response);
     var tag = document.createElement('a');
     tag.href = imageUrl;
-    tag.download = fileName;
+    tag.download = `${fileName}.${extension}`;
     document.body.appendChild(tag);
     tag.click();
     document.body.removeChild(tag);

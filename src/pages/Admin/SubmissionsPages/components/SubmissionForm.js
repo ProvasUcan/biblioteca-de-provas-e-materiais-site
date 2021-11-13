@@ -103,7 +103,7 @@ function SubmissionForm(
             files.map((file, index) => (
               <div className="individual-file-container">
                 <img
-                  srcSet={apiBaseUrl + '/' + file}
+                  srcSet={file}
                   alt=""
                   className="file-preview-img"
                 />
