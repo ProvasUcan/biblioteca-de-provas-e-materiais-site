@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import ReactDOM from 'react-dom'
-import { apiBaseUrl } from '../../config/apiConfig'
 import { download } from '../../helpers/download/downloadHelper'
 import { SearchContext } from '../../pages/HomePage/HomePage'
 

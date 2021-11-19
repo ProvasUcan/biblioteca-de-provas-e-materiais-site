@@ -20,15 +20,17 @@ function NotificationPage({ getUserInfo }) {
     filesUrls: []
   })
 
-  const handleGetNotification = async () => {
-    const res = await getSpecificNotification(notificationId)
+  const handleGetNotification = React.useCallback(async () => {
+    const id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1]
+    const res = await getSpecificNotification(id)
+    setNotificationId(id)
 
     if (res !== undefined) {
       const notification = res.notification;
       setNofication(notification)
       handleGetSpecificSubmission(notification.referenceId)
     }
-  }
+  }, [])
 
   const handleGetSpecificSubmission = async (submissionId) => {
     const res = await getSpecificSubmission(submissionId)
@@ -39,7 +41,7 @@ function NotificationPage({ getUserInfo }) {
 
   useEffect(() => {
     handleGetNotification()
-  }, [])
+  }, [handleGetNotification, notificationId])
 
   return (
     <div>
@@ -56,7 +58,7 @@ function NotificationPage({ getUserInfo }) {
           quantFiles={submission.quantFiles}
           filesTypes={submission.filesTypes}
           files={submission.filesUrls}
-          updateAction={() => {}}
+          updateAction={() => { }}
           userInterface={true}
         ></SubmissionForm>
       }

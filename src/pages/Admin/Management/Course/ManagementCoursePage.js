@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Switch } from 'react-router-dom'
-import AdminGuard from '../../../../services/security/guards/adminGuard'
 import { createCourse, getCourses, deleteCourse, updateCourse } from '../../../../services/remote/course/courseRemote'
 import ContainerItem from '../Components/ContainerItem'
 
@@ -13,7 +11,7 @@ function ManagementCoursePage({ auth }) {
     e.preventDefault();
 
     try {
-      const res = await createCourse({
+      await createCourse({
         course: courseName
       })
     } catch (error) {
@@ -33,7 +31,7 @@ function ManagementCoursePage({ auth }) {
 
   const handleDeleteCourse = async (id) => {
     try {
-      const res = await deleteCourse(id)
+      await deleteCourse(id)
     } catch (error) {
       console.log(error)
     }
@@ -41,7 +39,7 @@ function ManagementCoursePage({ auth }) {
 
   const handleUpdateCourse = async (id, value) => {
     try {
-      const res = await updateCourse(id, {
+      await updateCourse(id, {
         course: value
       })
     } catch (error) {

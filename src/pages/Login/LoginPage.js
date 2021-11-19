@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { apiBaseUrl } from '../../config/apiConfig'
 import readerImage from '../../assets/images/undraw_book_lover_mkck.svg'
 import { login } from '../../services/remote/auth/login'
 //
 function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [emailIsOn, setEmailIsOn] = useState(false)
-  const [passwordIsOn, setPasswordIsOn] = useState(false)
 
   const loginSubmit = async (e) => {
     e.preventDefault()

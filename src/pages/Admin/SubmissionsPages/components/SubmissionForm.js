@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { apiBaseUrl } from '../../../../config/apiConfig'
 import { createNotification } from '../../../../services/remote/notifications/notificationRemote'
 import { approveSubmission, desapproveSubmission, rejectSubmission, deleteSubmission } from '../../../../services/remote/submissions/submissionsRemote'
 import { getUserById } from '../../../../services/remote/user/user'
@@ -24,11 +23,12 @@ function SubmissionForm(
   const [username, setUsername] = useState('')
   const [isImagePreviewerOpen, setIsImagePreviewerOpen] = useState(false)
 
-  const handleGetUserInfo = async () => {
+  const handleGetUserInfo = React.useCallback(async () => {
     const user = (await getUserById(userId)).user
 
     setUsername(user.username ? user.username : user.email)
-  }
+  }, [userId])
+
   const handleApproveSubmission = async () => {
     const result = await approveSubmission(submissionId)
     const data = result.data
@@ -63,7 +63,7 @@ function SubmissionForm(
 
   useEffect(() => {
     handleGetUserInfo()
-  }, [])
+  }, [handleGetUserInfo])
 
   return (
     <div className="submission-form-model">

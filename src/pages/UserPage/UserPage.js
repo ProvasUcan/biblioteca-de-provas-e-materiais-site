@@ -16,18 +16,18 @@ export const UserPage = ({ getUserInfo }) => {
     year: ''
   })
 
-  const handleGetUserInfo = async () => {
+  const handleGetUserInfo = React.useCallback(async () => {
     try {
       const response = await getUserInfo()
       setUser(response.data.user)
     } catch (error) {
       console.error(error)
     }
-  }
+  }, [getUserInfo])
 
   useEffect(() => {
     handleGetUserInfo()
-  }, [])
+  }, [handleGetUserInfo])
 
   return (
     <div className="user-profile-main-container">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const SearchContainer = (
   {
@@ -22,7 +22,7 @@ const SearchContainer = (
   const [coursesStructure, setCoursesStructure] = useState({});
 
 
-  const searchStructure = async (selectedCourse = '', selectedYear = 0, selectedSemestre = 0) => {
+  const searchStructure = React.useCallback(async (selectedCourse = '', selectedYear = 0, selectedSemestre = 0) => {
     const courses = Object.keys(allCoursesStructure);
 
     if (courses.length !== 0) {
@@ -46,10 +46,7 @@ const SearchContainer = (
       handleActualSubjectChange(Object.keys(allCoursesStructure[course][course][year][semestre])[0]);
       handleActualDocumentType('Frequências');
     }
-
-
-
-  }
+  }, [allCoursesStructure, handleActualCourseChange, handleActualDocumentType, handleActualSubjectChange])
 
   const yearChange = function (e) {
     const year = e.target.value;
@@ -100,7 +97,7 @@ const SearchContainer = (
 
   useEffect(() => {
     searchStructure()
-  }, [])
+  }, [searchStructure])
 
   return (
     <div className="search-container">

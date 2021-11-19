@@ -15,18 +15,6 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
   const [isPedding, setIsPedding] = useState(false);
 
-  const handleGetAssigments = async () => {
-    setIsPedding(true);
-    try {
-      //const auxAssigments = await getAssigmentsFetcher();
-      //setAssigments(auxAssigments);
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setIsPedding(false);
-    }
-  }
-
   const handleGetAssigment = async () => {
     setIsPedding(true);
     const assigments = await getAssigments(actualCourse, actualSubject, actualDocumentType);
@@ -49,7 +37,7 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
     setActualDocumentType(value);
   }
 
-  const handleAllCourseStructure = async function () {
+  const handleAllCourseStructure = React.useCallback(async function () {
     try {
       const courses = await getAllCoursesStructure();
 
@@ -58,11 +46,11 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [getAllCoursesStructure])
 
   useEffect(() => {
     handleAllCourseStructure();
-  }, []);
+  }, [handleAllCourseStructure]);
 
 
   return (

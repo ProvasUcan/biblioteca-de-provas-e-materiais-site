@@ -5,14 +5,15 @@ import AdminGuard from '../../services/security/guards/adminGuard'
 function MainAdminRouter({adminAuth}) {
   const [auth, setAuth] = useState(false)
 
-  const handleAdminAuth = async () => {
+  const handleAdminAuth = React.useCallback(async () => {
     const response = await adminAuth()
 
     setAuth(response)
-  }
+  }, [adminAuth])
+
   useEffect(() => {
     handleAdminAuth()
-  }, [])
+  }, [handleAdminAuth])
 
   return (
     <>

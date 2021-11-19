@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getApprovedSubmissions, getNotApprovedSubmissions } from '../../../../services/remote/submissions/submissionsRemote'
+import { getApprovedSubmissions } from '../../../../services/remote/submissions/submissionsRemote'
 import SubmissionForm from '../components/SubmissionForm'
 
 function ApprovedSubmission() {

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Switch } from 'react-router-dom'
-import AdminGuard from '../../../../services/security/guards/adminGuard'
 import { getSubjects } from '../../../../services/remote/subject/subjectRemote'
 import { getCourses } from '../../../../services/remote/course/courseRemote'
 
@@ -23,23 +21,12 @@ function ManagementCourseSubjectPage({ auth }) {
     e.preventDefault();
 
     try {
-      const res = await createCourseSubject({
+      await createCourseSubject({
         course: courseName,
         subject: subjectName,
         year,
         semestre
       })
-      console.log(res)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleGetCoursesSubjects = async () => {
-    try {
-      const res = await getCoursesSubjects()
-
-      setSubjects(res)
     } catch (error) {
       console.log(error)
     }
@@ -47,7 +34,7 @@ function ManagementCourseSubjectPage({ auth }) {
 
   const handleDeleteSubject = async (id) => {
     try {
-      const res = await deleteCourseSubject(id)
+      await deleteCourseSubject(id)
     } catch (error) {
       console.log(error)
     }
@@ -55,7 +42,7 @@ function ManagementCourseSubjectPage({ auth }) {
 
   const handleUpdateSubject = async (id, value) => {
     try {
-      const res = await updateCourseSubject(id, {
+      await updateCourseSubject(id, {
         subject: value
       })
     } catch (error) {

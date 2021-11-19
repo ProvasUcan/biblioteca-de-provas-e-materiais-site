@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 function NotificationItem({
@@ -9,8 +9,6 @@ function NotificationItem({
   isReaded,
   handleShowNotificationContainer
 }) {
-  const [subject, setSubject] = useState('')
-
   return (
     <Link 
     to={`/biblioteca-de-provas-e-materiais-site/notification/${id}`} 

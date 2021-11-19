@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { generateRemoteDestFolder } from "../../../helpers/form/formHelper";
 import { uploadAssigments } from "../../../services/remote/assigments/assigmentsRemote";
 
@@ -17,7 +17,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
   const [subjectSelected, setSubjectSelected] = useState('');
   const [coursesStructure, setCoursesStructure] = useState({});
 
-  const setInitialStateOfForm = async () => {
+  const setInitialStateOfForm = React.useCallback(async () => {
     const courses = Object.keys(allCoursesStructure);
 
     if (courses.length !== 0) {
@@ -38,7 +38,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
       setSubjectSelected(Object.keys(allCoursesStructure[course][course][year][semestre])[0]);
       setAvaibleSubjects(Object.keys(allCoursesStructure[course][course][year][semestre]));
     }
-  }
+  }, [allCoursesStructure])
 
   const handleYearChange = (e) => {
     const year = e.target.value;
@@ -124,7 +124,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
   useEffect(() => {
     setInitialStateOfForm();
-  }, [])
+  }, [setInitialStateOfForm])
 
   return (
     <form id={id} encType="multipart/form-data" className="form-container" method="POST" onSubmit={(e) => {

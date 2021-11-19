@@ -7,7 +7,6 @@ function SignupPage() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [emailIsOn, setEmailIsOn] = useState(false)
 
   const signupSubmit = (e) => {
     e.preventDefault()

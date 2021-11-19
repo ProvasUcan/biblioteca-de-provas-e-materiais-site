@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Switch } from 'react-router-dom'
-import AdminGuard from '../../../../services/security/guards/adminGuard'
 import { createSubject, getSubjects, deleteSubject, updateSubject } from '../../../../services/remote/subject/subjectRemote'
 import ContainerItem from '../Components/ContainerItem'
 
@@ -13,7 +11,7 @@ function ManagementSubjectPage({ auth }) {
     e.preventDefault();
 
     try {
-      const res = await createSubject({
+      await createSubject({
         subject: subjectName
       })
     } catch (error) {
@@ -33,7 +31,7 @@ function ManagementSubjectPage({ auth }) {
 
   const handleDeleteSubject = async (id) => {
     try {
-      const res = await deleteSubject(id)
+      await deleteSubject(id)
     } catch (error) {
       console.log(error)
     }
@@ -41,7 +39,7 @@ function ManagementSubjectPage({ auth }) {
 
   const handleUpdateSubject = async (id, value) => {
     try {
-      const res = await updateSubject(id, {
+      await updateSubject(id, {
         subject: value
       })
     } catch (error) {

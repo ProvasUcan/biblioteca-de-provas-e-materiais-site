@@ -18,14 +18,13 @@ export const uploadAssigments = async (remoteDestFolder, files, userIdentificati
   }
 
   try {
-    const res = await fetch(`${apiBaseUrl}/submission/upload`, {
+    await fetch(`${apiBaseUrl}/submission/upload`, {
       method: "POST",
       body: form,
       headers: {
         'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
       }
     })
-    const data = await res.json();
     return true;
   } catch (error) {
     return false;

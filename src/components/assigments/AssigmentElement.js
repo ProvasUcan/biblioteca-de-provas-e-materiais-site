@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { apiBaseUrl } from "../../config/apiConfig";
+import { useContext } from "react";
 import { SearchContext } from "../../pages/HomePage/HomePage";
 
 const AssigmentElement = ({ assigment, id, previewAssigment, downloadAssigment }) => {

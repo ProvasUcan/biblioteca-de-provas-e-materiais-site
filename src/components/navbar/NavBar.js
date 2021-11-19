@@ -5,13 +5,13 @@ import Menu from './components/Menu';
 const NavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [workWithMobileMenu, setWorkWithMobileMenu] = useState(false);
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (width <= 1024) {
       setWorkWithMobileMenu(true)
     }
-  }, [])
+  }, [width])
   return (
     <div className="header">
       <div className="header-content">

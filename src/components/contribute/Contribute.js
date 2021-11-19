@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "./form/Form";
 
 const Contribute = ({ getAllCoursesStructure }) => {
@@ -7,11 +7,11 @@ const Contribute = ({ getAllCoursesStructure }) => {
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
 
 
-  const handleAllCourseStructure = async function () {
+  const handleAllCourseStructure = React.useCallback(async function () {
     const courses = await getAllCoursesStructure();
 
     setAllCoursesStructure(courses);
-  }
+  }, [getAllCoursesStructure])
 
   function createForm() {
     if (Object.keys(allCoursesStructure).length !== 0) {
@@ -50,7 +50,7 @@ const Contribute = ({ getAllCoursesStructure }) => {
 
   useEffect(() => {
     handleAllCourseStructure()
-  }, [])
+  }, [handleAllCourseStructure])
 
   return (
     <div className="contribute-container">

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react'
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import AboutPage from "../../pages/AboutPage/AboutPage";
 import LoginPage from "../../pages/Login/LoginPage";
 import SignupPage from '../../pages/Signup/SignupPage';
