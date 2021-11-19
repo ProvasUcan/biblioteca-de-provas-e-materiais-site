@@ -27,11 +27,23 @@ const NavBar = () => {
 
       {
         workWithMobileMenu &&
-        <button className="mobile-menu-hamburguer" onClick={() => {
-          console.log(isMobileMenuOpen)
-          setIsMobileMenuOpen(!isMobileMenuOpen)
-        }
-        }>Menu</button>
+        <button
+          className="mobile-menu-hamburguer"
+          style={{
+            backgroundColor: isMobileMenuOpen ? 'red' : '#00b2ff'
+          }}
+          onClick={() => {
+            console.log(isMobileMenuOpen)
+            setIsMobileMenuOpen(!isMobileMenuOpen)
+          }
+          }>
+          {
+            !isMobileMenuOpen ?
+              <i className="fas fa-bars"></i>
+              :
+              <i className="fas fa-times"></i>
+          }
+        </button>
       }
 
       {
