@@ -57,6 +57,9 @@ const SearchContainer = (
     setActualYear(year);
     setSemestres(Object.keys(allCoursesStructure[actualCourse][actualCourse][year]));
     setSubjects(Object.keys(allCoursesStructure[actualCourse][actualCourse][year][actualSemestre]));
+
+    setActualSemestre(Object.keys(allCoursesStructure[actualCourse][actualCourse][year])[0])
+    handleActualSubjectChange(Object.keys(allCoursesStructure[actualCourse][actualCourse][year][actualSemestre])[0])
   }
 
   const semestreChange = function (e) {
@@ -64,6 +67,8 @@ const SearchContainer = (
 
     setActualSemestre(semestre);
     setCourses(Object.keys(allCoursesStructure[actualCourse][actualCourse][actualYear][semestre]));
+
+    handleActualSubjectChange(Object.keys(allCoursesStructure[actualCourse][actualCourse][actualYear][semestre])[0])
   }
 
   const courseChange = function (e) {
@@ -85,6 +90,7 @@ const SearchContainer = (
     }
   }
   const subjectChange = function (e) {
+    console.log(e.target.value)
     handleActualSubjectChange(e.target.value);
   }
   const documentTypeChange = function (e) {
