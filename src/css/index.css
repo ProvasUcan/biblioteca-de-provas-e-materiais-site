@@ -24,7 +24,7 @@ body {
 }
 
 #root {
-  width: 95vw;
+  width: 95%;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -1406,4 +1406,53 @@ body {
   color: #333;
   font-size: 1.4rem;
   margin-bottom: 1rem;
+}
+.meu-button-hamburguer {
+  display: none;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    position: relative;
+  }
+  .header-content {
+    position: relative !important;
+  }
+  .menu-container {
+    flex-direction: column;
+    margin: 0;
+    margin-top: 2rem;
+    width: 40%;
+  }
+  .menu-link {
+    margin: 0;
+    margin-top: 1rem;
+  }
+  .search-container--top {
+    flex-direction: column;
+  }
+  .create-new-form {
+    width: 25%;
+  }
+  .login-signup-form {
+    width: 90% !important;
+  }
+  .login-signup-form-img {
+    width: 90% !important;
+  }
+  .form-login-signup-heading-2 {
+    font-size: 4.6rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+  .config-form {
+    width: 85%;
+  }
+  .mobile-menu-hamburguer {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

@@ -40,13 +40,15 @@ function SignupPage() {
   }
   return (
     <div style={styles.loginContainer}>
-      <img srcSet={readerImage} style={styles.backgroundImage} alt="" />
+      <img className="login-signup-form-img" srcSet={readerImage} style={styles.backgroundImage} alt="" />
 
       <form
+        className="login-signup-form"
         onSubmit={signupSubmit}
         style={styles.formContainer}
         method='post'
       >
+        <h2 className="form-login-signup-heading-2">Cadastro</h2>
         <div className="login-container">
           <div style={styles.formRow}>
             <label
