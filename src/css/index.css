@@ -1425,6 +1425,12 @@ body {
   display: none;
 }
 
+.form-login-signup-heading-2 {
+  font-size: 4.6rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
 
 @media screen and (max-width: 1024px) {
   .header {
@@ -1462,12 +1468,6 @@ body {
 
   .login-signup-form-img {
     width: 90% !important;
-  }
-
-  .form-login-signup-heading-2 {
-    font-size: 4.6rem;
-    margin-bottom: 1.5rem;
-    color: #222;
   }
 
   .config-form {
