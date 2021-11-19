@@ -7,33 +7,33 @@ import ContributeWayCard from './components/ContributeWayCard'
 function AboutPage() {
   return (
     <div style={styles.container} className="about-page-main-container">
-      <div style={styles.questionRow}>
+      <div style={styles.questionRow} className="question-row">
 
-        <img srcSet={image1} style={styles.firstImage} alt="" />
+        <img srcSet={image1} style={styles.firstImage} alt="" className="about-img"/>
 
         <div style={styles.questionRowContent}>
-          <h1 className="h1--heading" style={styles.heading1}>O que é a <strong>Biblioteca de Provas UCAN</strong> ?</h1>
-          <p style={styles.normalText}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae praesentium sed corporis totam temporibus dolores eos non est illo, ex doloribus blanditiis repudiandae provident saepe maiores magni rerum dolorum. Tempora quod amet recusandae porro necessitatibus vitae vero labore, neque sunt blanditiis obcaecati assumenda. Doloribus consequuntur impedit, ipsa sequi at, deleniti officia accusamus voluptas non corporis mollitia omnis laudantium perspiciatis sunt dolorum pariatur consequatur officiis! Ipsa, consequatur veniam odit doloremque, id facilis, error sed voluptatum saepe maxime facere debitis quod ullam illo quis optio! Repudiandae nobis vero praesentium aut sint, dicta laboriosam quam consequuntur quibusdam culpa ipsam voluptatibus. Libero, in maiores.</p>
+          <h1 className="h1--heading" style={styles.heading1} >O que é a <strong>Biblioteca de Provas UCAN</strong> ?</h1>
+          <p style={styles.normalText}>É um projecto de caracter público para estudantes da Universidade Católica de Angola, com o objectivo principal de ajudar e resolver o problema de acesso a provas passadas de disciplinas, para que os estudantes se preparem antecipadamente de maneira direcionada para um melhor desempenho acadêmico</p>
         </div>
       </div>
 
-      <div style={styles.secondRow}>
-        <div style={styles.questionSpecialContainer}>
+      <div style={styles.secondRow} className="question-row">
+        <div style={styles.questionSpecialContainer} className="question-row">
           <img srcSet={winnerPhoto} style={styles.winnerPhoto} alt="" />
           <h1 className="h1--heading" style={styles.heading1}>Quem pode ajudar?</h1>
         </div>
         <div style={styles.questionRowContent}>
-          <p style={styles.normalText}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae praesentium sed corporis totam temporibus dolores eos non est illo, ex doloribus blanditiis repudiandae provident saepe maiores magni rerum dolorum. Tempora quod amet recusandae porro necessitatibus vitae vero labore, neque sunt blanditiis obcaecati assumenda. Doloribus consequuntur impedit, ipsa sequi at, deleniti officia accusamus voluptas non corporis mollitia omnis laudantium perspiciatis sunt dolorum pariatur consequatur officiis! Ipsa, consequatur veniam odit doloremque, id facilis, error sed voluptatum saepe maxime facere debitis quod ullam illo quis optio! Repudiandae nobis vero praesentium aut sint, dicta laboriosam quam consequuntur quibusdam culpa ipsam voluptatibus. Libero, in maiores.</p>
+          <p style={styles.normalText} className="about-normal-text">Você pode ser dos grandes impulsionadores desse projecto e ainda receber reconhecimento por isso se desejar ou não. Então todos podem contribuir</p>
         </div>
       </div>
 
 
-      <div style={styles.thirdRow}>
+      <div style={styles.thirdRow} className="question-row">
         <div style={styles.questionRowContent}>
           <h1 className="h1--heading" style={styles.heading1}>Como contribuir?</h1>
         </div>
 
-        <div style={styles.contributeWayCardsContainer}>
+        <div style={styles.contributeWayCardsContainer} className="question-row">
           <ContributeWayCard
             title="Contribuidor Anônimo"
             instructions={
@@ -48,9 +48,10 @@ function AboutPage() {
             title="Contribuidor Registrado"
             instructions={
               [
-                '1º Você ajuda sabendo quem vc é.',
+                '1º Você ajuda com uma identificação.',
                 '2º Você tem acesso aos dados estatísticos.',
-                '3º Podera fazer parte do nosso memorial, caso concorde.'
+                '3º Notificações de suas submissões.',
+                '4º Podera fazer parte do nosso memorial, caso concorde.',
               ]
             }
           ></ContributeWayCard>

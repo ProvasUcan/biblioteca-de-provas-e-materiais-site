@@ -1483,4 +1483,45 @@ body {
     border-radius: 0.5rem;
     background: #00b2ff;
   }
+
+  .preview-container {
+    width: 90%;
+  }
+
+  .menu-container {
+    align-self: end;
+    padding: 1rem;
+    border: 0.1rem solid #2224;
+    border-radius: 1rem;
+  }
+  .question-row {
+    flex-direction: column;
+  }
+  .h1--heading {
+    font-size: 3.2rem !important;
+  }
+  .contribute-way-card {
+    width: 90% !important;
+    margin-top: 2rem !important;
+  }
+  .about-img {
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu-container {
+    width: 60%;
+  }
+  .create-new-form {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .menu-container {
+    width: 90%;
+    align-self: center;
+  }
 }

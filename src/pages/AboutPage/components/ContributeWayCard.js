@@ -2,7 +2,7 @@ import React from 'react'
 
 function ContributeWayCard({ title, instructions }) {
   return (
-    <div style={styles.contributeWayCard}>
+    <div style={styles.contributeWayCard} className="contribute-way-card">
       <h2 style={styles.contributeWayTitle}>{title}</h2>
 
       <div style={styles.contributeWayDescContainer}>
