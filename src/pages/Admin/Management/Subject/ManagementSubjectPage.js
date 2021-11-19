@@ -16,7 +16,6 @@ function ManagementSubjectPage({ auth }) {
       const res = await createSubject({
         subject: subjectName
       })
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
@@ -35,8 +34,6 @@ function ManagementSubjectPage({ auth }) {
   const handleDeleteSubject = async (id) => {
     try {
       const res = await deleteSubject(id)
-
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
@@ -47,8 +44,6 @@ function ManagementSubjectPage({ auth }) {
       const res = await updateSubject(id, {
         subject: value
       })
-
-      console.log(res)
     } catch (error) {
       console.log(error)
     }

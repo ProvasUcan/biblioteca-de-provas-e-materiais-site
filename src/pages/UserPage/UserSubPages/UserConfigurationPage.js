@@ -10,7 +10,6 @@ function UserConfigurationPage() {
   const handleGetUserInfo = async () => {
     const res = await getActualUserData();
 
-    console.log(res)
     if (res.data !== undefined) {
       const data = res.data.user;
 

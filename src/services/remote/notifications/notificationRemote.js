@@ -72,7 +72,6 @@ export const updateNotification = async (courseId, body) => {
     body: JSON.stringify(body)
   })
   const data = await res.json()
-  console.log(data)
 
   return data.data;
 }

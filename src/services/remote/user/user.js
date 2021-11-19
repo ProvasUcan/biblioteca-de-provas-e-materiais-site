@@ -37,7 +37,6 @@ export const getContributors = async (userId) => {
 }
 
 export const updateUser = async (userId, body) => {
-  console.log(userId, body)
   const res = await fetch(`${apiBaseUrl}/user/${userId}`, {
     method: 'PUT',
     headers: {

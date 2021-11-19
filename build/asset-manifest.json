@@ -1,21 +1,25 @@
 {
   "files": {
-    "main.css": "/biblioteca-de-provas-e-materiais-site/static/css/main.1d31a729.chunk.css",
-    "main.js": "/biblioteca-de-provas-e-materiais-site/static/js/main.0b09c7c1.chunk.js",
-    "main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/main.0b09c7c1.chunk.js.map",
+    "main.css": "/biblioteca-de-provas-e-materiais-site/static/css/main.7f95ffbc.chunk.css",
+    "main.js": "/biblioteca-de-provas-e-materiais-site/static/js/main.c3c2d971.chunk.js",
+    "main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/main.c3c2d971.chunk.js.map",
     "runtime-main.js": "/biblioteca-de-provas-e-materiais-site/static/js/runtime-main.1c3fd4a9.js",
     "runtime-main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/runtime-main.1c3fd4a9.js.map",
-    "static/js/2.90e201ed.chunk.js": "/biblioteca-de-provas-e-materiais-site/static/js/2.90e201ed.chunk.js",
-    "static/js/2.90e201ed.chunk.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/2.90e201ed.chunk.js.map",
+    "static/js/2.57111828.chunk.js": "/biblioteca-de-provas-e-materiais-site/static/js/2.57111828.chunk.js",
+    "static/js/2.57111828.chunk.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/2.57111828.chunk.js.map",
     "index.html": "/biblioteca-de-provas-e-materiais-site/index.html",
-    "static/css/main.1d31a729.chunk.css.map": "/biblioteca-de-provas-e-materiais-site/static/css/main.1d31a729.chunk.css.map",
-    "static/js/2.90e201ed.chunk.js.LICENSE.txt": "/biblioteca-de-provas-e-materiais-site/static/js/2.90e201ed.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/biblioteca-de-provas-e-materiais-site/static/media/Rubik-Regular.da39336c.ttf"
+    "static/css/main.7f95ffbc.chunk.css.map": "/biblioteca-de-provas-e-materiais-site/static/css/main.7f95ffbc.chunk.css.map",
+    "static/js/2.57111828.chunk.js.LICENSE.txt": "/biblioteca-de-provas-e-materiais-site/static/js/2.57111828.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/biblioteca-de-provas-e-materiais-site/static/media/Rubik-Regular.da39336c.ttf",
+    "static/media/pexels-andrea-piacquadio-3765114.ebc50699.jpg": "/biblioteca-de-provas-e-materiais-site/static/media/pexels-andrea-piacquadio-3765114.ebc50699.jpg",
+    "static/media/pexels-fauxels-3184325.d10fb934.jpg": "/biblioteca-de-provas-e-materiais-site/static/media/pexels-fauxels-3184325.d10fb934.jpg",
+    "static/media/pexels-nataliya-vaitkevich-6120397.b50c3c91.jpg": "/biblioteca-de-provas-e-materiais-site/static/media/pexels-nataliya-vaitkevich-6120397.b50c3c91.jpg",
+    "static/media/undraw_book_lover_mkck.4aed0aa7.svg": "/biblioteca-de-provas-e-materiais-site/static/media/undraw_book_lover_mkck.4aed0aa7.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.1c3fd4a9.js",
-    "static/js/2.90e201ed.chunk.js",
-    "static/css/main.1d31a729.chunk.css",
-    "static/js/main.0b09c7c1.chunk.js"
+    "static/js/2.57111828.chunk.js",
+    "static/css/main.7f95ffbc.chunk.css",
+    "static/js/main.c3c2d971.chunk.js"
   ]
 }

@@ -1,7 +1,6 @@
 import { apiBaseUrl } from "../../../config/apiConfig"
 
 export const getAssigments = async (course, subject, documentType) => {
-  console.log(`${apiBaseUrl}/course/${course}/${subject}/${documentType}`)
   const res = await fetch(`${apiBaseUrl}/course/${course}/${subject}/${documentType}`)
   const data = await res.json();
 

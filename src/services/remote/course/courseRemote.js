@@ -1,7 +1,6 @@
 import { apiBaseUrl } from "../../../config/apiConfig";
 
 export const getAllCoursesStructure = async function () {
-  console.log('all courses')
   let auxAllCoursesStructure = await fetch(`${apiBaseUrl}/course/all`);
   auxAllCoursesStructure = await auxAllCoursesStructure.json();
 
@@ -30,7 +29,6 @@ export const getCourses = async () => {
     }
   })
   const data = await res.json()
-  console.log(data)
 
   return data.courses;
 }
@@ -57,7 +55,6 @@ export const updateCourse = async (courseId, body) => {
     body: JSON.stringify(body)
   })
   const data = await res.json()
-  console.log(data)
 
   return data.data;
 }

@@ -39,13 +39,11 @@ const Contribute = ({ getAllCoursesStructure }) => {
       for (let i = 0; i < forms.length; i++) {
         const deleteIndexForm = Number(forms[i].formId.split('-')[1]);
 
-        console.log(deleteIndexForm, ' !== ', deleteIndex, ', ', deleteIndexForm !== deleteIndex)
         if (deleteIndexForm !== deleteIndex) {
           auxForms.push(forms[i])
         }
       }
 
-      console.log(auxForms)
       return auxForms;
     })
   }

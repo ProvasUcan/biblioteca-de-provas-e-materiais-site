@@ -22,7 +22,6 @@ export const getCoursesSubjects = async () => {
     }
   })
   const data = await res.json()
-  console.log(data)
 
   return data.courses;
 }
@@ -49,7 +48,6 @@ export const updateCourseSubject = async (courseId, body) => {
     body: JSON.stringify(body)
   })
   const data = await res.json()
-  console.log(data)
 
   return data.data;
 }

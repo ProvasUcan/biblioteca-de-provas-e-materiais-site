@@ -48,8 +48,6 @@ function ManagementCourseSubjectPage({ auth }) {
   const handleDeleteSubject = async (id) => {
     try {
       const res = await deleteCourseSubject(id)
-
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
@@ -60,8 +58,6 @@ function ManagementCourseSubjectPage({ auth }) {
       const res = await updateCourseSubject(id, {
         subject: value
       })
-
-      console.log(res)
     } catch (error) {
       console.log(error)
     }

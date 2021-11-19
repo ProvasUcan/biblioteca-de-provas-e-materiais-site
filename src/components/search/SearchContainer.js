@@ -90,7 +90,6 @@ const SearchContainer = (
     }
   }
   const subjectChange = function (e) {
-    console.log(e.target.value)
     handleActualSubjectChange(e.target.value);
   }
   const documentTypeChange = function (e) {

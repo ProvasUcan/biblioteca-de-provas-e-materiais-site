@@ -11,7 +11,6 @@ function SignupPage() {
 
   const signupSubmit = (e) => {
     e.preventDefault()
-    console.log(e)
 
     fetch(`${apiBaseUrl}/signup`, {
       method: 'POST',

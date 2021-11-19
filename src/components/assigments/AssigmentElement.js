@@ -22,7 +22,6 @@ const AssigmentElement = ({ assigment, id, previewAssigment, downloadAssigment }
 
           <li onClick={(e) => {
             e.stopPropagation();
-            console.log('Assigment ', assigment)
             downloadAssigment(assigment, searchContext.name)
           }} className="hover-container-menu--item">
             <img src="./img/akar-icons_download.svg" alt="Download assigment" className="hover-container-menu--item-img" />

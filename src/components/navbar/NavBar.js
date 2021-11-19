@@ -8,7 +8,6 @@ const NavBar = () => {
   const { height, width } = useWindowDimensions();
 
   useEffect(() => {
-    console.log(width)
     if (width <= 1024) {
       setWorkWithMobileMenu(true)
     }
@@ -33,7 +32,6 @@ const NavBar = () => {
             backgroundColor: isMobileMenuOpen ? 'red' : '#00b2ff'
           }}
           onClick={() => {
-            console.log(isMobileMenuOpen)
             setIsMobileMenuOpen(!isMobileMenuOpen)
           }
           }>

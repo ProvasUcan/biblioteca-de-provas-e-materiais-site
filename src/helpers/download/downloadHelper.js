@@ -1,5 +1,4 @@
 export const download = (url, fileName) => {
-  console.log('url ', url, ' fileName ', fileName)
 
   var xhr = new XMLHttpRequest();
   const extension = url.split('.')[url.split('.').length - 1];

@@ -12,7 +12,6 @@ function MainPrivateRouter() {
 
   const verifyTokenValidation = async () => {
     const res = await isValidToken()
-    console.log('Res ', res)
     setIsAuthenticated(res)
   }
 

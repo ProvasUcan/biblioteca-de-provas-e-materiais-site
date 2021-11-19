@@ -16,7 +16,6 @@ function ManagementCoursePage({ auth }) {
       const res = await createCourse({
         course: courseName
       })
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
@@ -35,8 +34,6 @@ function ManagementCoursePage({ auth }) {
   const handleDeleteCourse = async (id) => {
     try {
       const res = await deleteCourse(id)
-
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
@@ -47,8 +44,6 @@ function ManagementCoursePage({ auth }) {
       const res = await updateCourse(id, {
         course: value
       })
-
-      console.log(res)
     } catch (error) {
       console.log(error)
     }
