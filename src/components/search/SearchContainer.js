@@ -97,7 +97,7 @@ const SearchContainer = (
 
   useEffect(() => {
     searchStructure()
-  }, [searchStructure])
+  }, [])
 
   return (
     <div className="search-container">
