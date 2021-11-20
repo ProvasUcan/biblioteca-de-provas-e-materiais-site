@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/biblioteca-de-provas-e-materiais-site/static/css/main.7f95ffbc.chunk.css",
-    "main.js": "/biblioteca-de-provas-e-materiais-site/static/js/main.642528c3.chunk.js",
-    "main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/main.642528c3.chunk.js.map",
+    "main.css": "/biblioteca-de-provas-e-materiais-site/static/css/main.67b80fb2.chunk.css",
+    "main.js": "/biblioteca-de-provas-e-materiais-site/static/js/main.1631e13f.chunk.js",
+    "main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/main.1631e13f.chunk.js.map",
     "runtime-main.js": "/biblioteca-de-provas-e-materiais-site/static/js/runtime-main.9cf2e443.js",
     "runtime-main.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/runtime-main.9cf2e443.js.map",
     "static/js/2.a69d51b7.chunk.js": "/biblioteca-de-provas-e-materiais-site/static/js/2.a69d51b7.chunk.js",
     "static/js/2.a69d51b7.chunk.js.map": "/biblioteca-de-provas-e-materiais-site/static/js/2.a69d51b7.chunk.js.map",
     "index.html": "/biblioteca-de-provas-e-materiais-site/index.html",
-    "static/css/main.7f95ffbc.chunk.css.map": "/biblioteca-de-provas-e-materiais-site/static/css/main.7f95ffbc.chunk.css.map",
+    "static/css/main.67b80fb2.chunk.css.map": "/biblioteca-de-provas-e-materiais-site/static/css/main.67b80fb2.chunk.css.map",
     "static/js/2.a69d51b7.chunk.js.LICENSE.txt": "/biblioteca-de-provas-e-materiais-site/static/js/2.a69d51b7.chunk.js.LICENSE.txt",
     "static/media/index.css": "/biblioteca-de-provas-e-materiais-site/static/media/Rubik-Regular.da39336c.ttf",
     "static/media/pexels-andrea-piacquadio-3765114.ebc50699.jpg": "/biblioteca-de-provas-e-materiais-site/static/media/pexels-andrea-piacquadio-3765114.ebc50699.jpg",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.9cf2e443.js",
     "static/js/2.a69d51b7.chunk.js",
-    "static/css/main.7f95ffbc.chunk.css",
-    "static/js/main.642528c3.chunk.js"
+    "static/css/main.67b80fb2.chunk.css",
+    "static/js/main.1631e13f.chunk.js"
   ]
 }
