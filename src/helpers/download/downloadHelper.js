@@ -2,6 +2,9 @@ export const download = (url, fileName) => {
 
   var xhr = new XMLHttpRequest();
   const extension = url.split('.')[url.split('.').length - 1];
+  url = url.replace('http', 'https')
+
+  console.log(url)
   xhr.open("GET", url, true);
   xhr.responseType = "blob";
   xhr.onload = function () {
