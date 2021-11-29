@@ -38,6 +38,8 @@ export default function Menu() {
       setEmail(user.email)
       setUserProfilePicture(user.profilePicture)
       verifyAdminRole(user)
+    } else {
+      localStorage.removeItem('auth-token-biblioteca-de-provas')
     }
   }, [])
 

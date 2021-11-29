@@ -1,1 +1,1 @@
-export const apiBaseUrl = 'https://provas-ucan.herokuapp.com'
+export const apiBaseUrl = 'http://localhost:3000'
