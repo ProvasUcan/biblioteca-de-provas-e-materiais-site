@@ -7,7 +7,7 @@ const AdminGuard = ({component: Component, auth, ...rest}) => {
       return (
         auth ? 
         <Component auth={auth} {...props}></Component> :
-        <Redirect to="biblioteca-de-provas-e-materiais-site/"></Redirect>
+        <Redirect to="/"></Redirect>
       )
     }}>
     </Route>
