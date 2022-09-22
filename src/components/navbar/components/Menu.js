@@ -60,19 +60,19 @@ export default function Menu() {
 
   return (
     <Switch>
-      <Route path="/biblioteca-de-provas-e-materiais-site">
+      <Route path="/">
         <div className="menu-container">
-          <Link to="/biblioteca-de-provas-e-materiais-site/" className="menu-link">Home</Link>
-          <Link to="/biblioteca-de-provas-e-materiais-site/about" className="menu-link">Sobre</Link>
+          <Link to="/" className="menu-link">Home</Link>
+          <Link to="/about" className="menu-link">Sobre</Link>
           {
             showLoginButton &&
-            <Link to="/biblioteca-de-provas-e-materiais-site/login" className="menu-link">Login</Link>
+            <Link to="/login" className="menu-link">Login</Link>
           }
-          <Link to="/biblioteca-de-provas-e-materiais-site/contributers" className="menu-link">Contribuidores</Link>
-          <Link to="/biblioteca-de-provas-e-materiais-site/contribute" className="menu-link contribute-link">Contribua</Link>
+          <Link to="/contributers" className="menu-link">Contribuidores</Link>
+          <Link to="/contribute" className="menu-link contribute-link">Contribua</Link>
           {
             hasAdminRole &&
-            <Link to="/biblioteca-de-provas-e-materiais-site/admin" className="menu-link admin-menu-link">Admin</Link>
+            <Link to="/admin" className="menu-link admin-menu-link">Admin</Link>
           }
           {
             !showLoginButton &&
@@ -93,7 +93,7 @@ export default function Menu() {
 
 
                 <div className="dropdown-content">
-                  <Link to="/biblioteca-de-provas-e-materiais-site/user" className="menu-link">Profile</Link>
+                  <Link to="/user" className="menu-link">Profile</Link>
                   <button className="menu-link"
                     onClick={() => {
                       setShowNotificationMainContainer(true)
@@ -106,7 +106,7 @@ export default function Menu() {
                       </span>
                     }
                   </button>
-                  <Link to="/biblioteca-de-provas-e-materiais-site/" className="menu-link logout-button" onClick={() => {
+                  <Link to="/" className="menu-link logout-button" onClick={() => {
                     localStorage.setItem('auth-token-biblioteca-de-provas', '')
                     setShowLoginButton(true)
                     setHasAdminRole(false)

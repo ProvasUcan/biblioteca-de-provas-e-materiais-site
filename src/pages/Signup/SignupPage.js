@@ -109,7 +109,7 @@ function SignupPage() {
         </div>
 
 
-        <p style={styles.signupText}>Já possui uma conta? <Link to="/biblioteca-de-provas-e-materiais-site/login">Acesse agora</Link> </p>
+        <p style={styles.signupText}>Já possui uma conta? <Link to="/login">Acesse agora</Link> </p>
 
       </form>
 

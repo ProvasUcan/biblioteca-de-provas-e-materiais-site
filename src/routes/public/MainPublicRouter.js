@@ -10,26 +10,26 @@ import ContributorsPage from "../../pages/ContributorsPage/ContributorsPage";
 import { getAllCoursesStructure } from "../../services/remote/course/courseRemote";
 import { getAssigments } from "../../services/remote/assigments/assigmentsRemote";
 import Contribute from "../../components/contribute/Contribute";
-
+ 
 
 function MainRouter() {
   return (
     <>
-      <Route exact path="/biblioteca-de-provas-e-materiais-site/">
+      <Route exact path="/">
         <HomePage
           getAllCoursesStructure={getAllCoursesStructure}
           getAssigments={getAssigments}
         ></HomePage>
       </Route>
 
-      <Route exact path="/biblioteca-de-provas-e-materiais-site/contribute">
+      <Route exact path="/contribute">
         <Contribute getAllCoursesStructure={getAllCoursesStructure}></Contribute>
       </Route>
 
-      <Route exact path="/biblioteca-de-provas-e-materiais-site/about" component={AboutPage} />
-      <Route exact path="/biblioteca-de-provas-e-materiais-site/login" component={LoginPage} />
-      <Route exact path="/biblioteca-de-provas-e-materiais-site/signup" component={SignupPage} />
-      <Route exact path="/biblioteca-de-provas-e-materiais-site/contributers" component={ContributorsPage} />
+      <Route exact path="/about" component={AboutPage} />
+      <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/signup" component={SignupPage} />
+      <Route exact path="/contributers" component={ContributorsPage} />
     </>
   )
 }

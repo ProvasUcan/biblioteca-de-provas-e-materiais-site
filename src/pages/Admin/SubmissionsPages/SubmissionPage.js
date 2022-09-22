@@ -13,28 +13,28 @@ function SubmissionPage({ auth }) {
         <input type="text" name="submission-search-input" id="submission-search-input" />
 
         <ul className="submissions-types-menu-container">
-          <Link to="/biblioteca-de-provas-e-materiais-site/admin/submissions/approved" className="submission-type-item">Aprovados</Link>
-          <Link to="/biblioteca-de-provas-e-materiais-site/admin/submissions/notapproved" className="submission-type-item">Não Aprovados</Link>
-          <Link to="/biblioteca-de-provas-e-materiais-site/admin/submissions/rejected" className="submission-type-item">Rejeitados</Link>
+          <Link to="/admin/submissions/approved" className="submission-type-item">Aprovados</Link>
+          <Link to="/admin/submissions/notapproved" className="submission-type-item">Não Aprovados</Link>
+          <Link to="/admin/submissions/rejected" className="submission-type-item">Rejeitados</Link>
         </ul>
       </div>
 
       <div className="display-container">
         <Switch>
           <AdminGuard
-            path="/biblioteca-de-provas-e-materiais-site/admin/submissions/approved"
+            path="/admin/submissions/approved"
             auth={auth}
             component={ApprovedSubmission}
           ></AdminGuard>
 
           <AdminGuard
-            path="/biblioteca-de-provas-e-materiais-site/admin/submissions/notapproved"
+            path="/admin/submissions/notapproved"
             auth={auth}
             component={NotApprovedSubmission}
           ></AdminGuard>
 
           <AdminGuard
-            path="/biblioteca-de-provas-e-materiais-site/admin/submissions/rejected"
+            path="/admin/submissions/rejected"
             auth={auth}
             component={RejectedSubmission}
           ></AdminGuard>

@@ -54,22 +54,22 @@ export const UserPage = ({ getUserInfo }) => {
       </div>
  
       <ul className="user-profile-menu">
-        <Link className="user-profile-menu-item" to="/biblioteca-de-provas-e-materiais-site/user/statistics">
+        <Link className="user-profile-menu-item" to="/user/statistics">
           Estatísticas
         </Link>
-        <Link className="user-profile-menu-item" to="/biblioteca-de-provas-e-materiais-site/user/configuration">
+        <Link className="user-profile-menu-item" to="/user/configuration">
           Configurações
         </Link>
       </ul>
 
       <Switch>
-        <Route exact path="/biblioteca-de-provas-e-materiais-site/user/notifications">
+        <Route exact path="/user/notifications">
           <UserNotificationPage></UserNotificationPage>
         </Route>
-        <Route exact path="/biblioteca-de-provas-e-materiais-site/user/statistics">
+        <Route exact path="/user/statistics">
           <UserStatisticsPage></UserStatisticsPage>
         </Route>
-        <Route exact path="/biblioteca-de-provas-e-materiais-site/user/configuration">
+        <Route exact path="/user/configuration">
           <UserConfigurationPage></UserConfigurationPage>
         </Route>
       </Switch>

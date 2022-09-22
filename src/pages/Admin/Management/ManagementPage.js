@@ -11,28 +11,28 @@ function ManagementPage({ auth }) {
     <div className="submission-controller-main-container">
       <div className="top-container">
         <ul className="submissions-types-menu-container">
-          <Link to="/biblioteca-de-provas-e-materiais-site/admin/management/course" className="submission-type-item">Cursos</Link>
-          <Link to="/biblioteca-de-provas-e-materiais-site/admin/management/subject" className="submission-type-item">Disciplinas</Link>
-          <Link to="/biblioteca-de-provas-e-materiais-site/admin/management/course-subject" className="submission-type-item">Cursos & Disciplinas</Link>
+          <Link to="/admin/management/course" className="submission-type-item">Cursos</Link>
+          <Link to="/admin/management/subject" className="submission-type-item">Disciplinas</Link>
+          <Link to="/admin/management/course-subject" className="submission-type-item">Cursos & Disciplinas</Link>
         </ul>
       </div>
 
       <div className="display-container">
         <Switch>
           <AdminGuard
-            path="/biblioteca-de-provas-e-materiais-site/admin/management/course"
+            path="/admin/management/course"
             auth={auth}
             component={ManagementCoursePage}
           ></AdminGuard>
 
           <AdminGuard
-            path="/biblioteca-de-provas-e-materiais-site/admin/management/subject"
+            path="/admin/management/subject"
             auth={auth}
             component={ManagementSubjectPage}
           ></AdminGuard>
 
           <AdminGuard
-            path="/biblioteca-de-provas-e-materiais-site/admin/management/course-subject"
+            path="/admin/management/course-subject"
             auth={auth}
             component={ManagementCourseSubjectPage}
           ></AdminGuard>

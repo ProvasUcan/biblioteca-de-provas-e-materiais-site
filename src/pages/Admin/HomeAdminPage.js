@@ -14,21 +14,21 @@ function HomeAdminPage({ auth }) {
       <div className="main-container">
         <div className="main-control-panel-container">
           <ul className="control-panel-options-menu">
-            <Link to="/biblioteca-de-provas-e-materiais-site/admin/submissions" className="control-panel-options-menu-item">Submissões</Link>
-            <Link to="/biblioteca-de-provas-e-materiais-site/admin/management" className="control-panel-options-menu-item">Cursos & Disciplinas</Link>
-            <Link to="/biblioteca-de-provas-e-materiais-site/admin/settings" className="control-panel-options-menu-item">Configurações</Link>
+            <Link to="/admin/submissions" className="control-panel-options-menu-item">Submissões</Link>
+            <Link to="/admin/management" className="control-panel-options-menu-item">Cursos & Disciplinas</Link>
+            <Link to="/admin/settings" className="control-panel-options-menu-item">Configurações</Link>
           </ul>
         </div>
 
         <div className="side-control-container">
           <Switch>
             <AdminGuard
-              path="/biblioteca-de-provas-e-materiais-site/admin/submissions" auth={auth}
+              path="/admin/submissions" auth={auth}
               component={SubmissionPage}
             ></AdminGuard>
 
             <AdminGuard
-              path="/biblioteca-de-provas-e-materiais-site/admin/management" auth={auth}
+              path="/admin/management" auth={auth}
               component={ManagementPage}
             ></AdminGuard>
 

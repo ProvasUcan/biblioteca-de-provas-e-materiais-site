@@ -6,7 +6,7 @@ import { UserPage } from "../../pages/UserPage/UserPage";
 import { isValidToken } from "../../services/auth/authService";
 import NotificationPage from '../../pages/NotificationPage/NotificationPage';
 
-
+ 
 function MainPrivateRouter() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -21,9 +21,9 @@ function MainPrivateRouter() {
 
   return (
     <>
-      <UserGuard path="/biblioteca-de-provas-e-materiais-site/user" component={UserPage} auth={isAuthenticated} getUserInfo={getActualUserData}>
+      <UserGuard path="/user" component={UserPage} auth={isAuthenticated} getUserInfo={getActualUserData}>
       </UserGuard>
-      <UserGuard path="/biblioteca-de-provas-e-materiais-site/notification/" component={NotificationPage} auth={isAuthenticated} getUserInfo={getActualUserData}>
+      <UserGuard path="/notification/" component={NotificationPage} auth={isAuthenticated} getUserInfo={getActualUserData}>
       </UserGuard>
     </>
   )

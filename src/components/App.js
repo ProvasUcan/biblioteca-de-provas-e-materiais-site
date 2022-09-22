@@ -1,8 +1,6 @@
 import NavBar from "./navbar/NavBar";
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import React from "react";
-
-
 
 import MainPublicRouter from "../routes/public/MainPublicRouter";
 import MainPrivateRouter from "../routes/private/MainPrivateRouter";
@@ -12,7 +10,6 @@ import { isAdminUser } from "../services/auth/authService";
 const App = () => {
   return (
     <Router>
-
       <div className="main-app-container">
         {
           <>
@@ -25,21 +22,13 @@ const App = () => {
               <MainPublicRouter></MainPublicRouter>
             </Switch>
             <Switch>
-              <MainAdminRouter
-                adminAuth={isAdminUser}
-              ></MainAdminRouter>
+              <MainAdminRouter adminAuth={isAdminUser}></MainAdminRouter>
             </Switch>
-
-
           </>
         }
       </div>
-
-
-
     </Router>
-
   );
-}
+};
 
 export default App;

@@ -79,7 +79,7 @@ function LoginPage() {
         </div>
 
 
-        <p style={styles.signupText}>Não possui uma conta? <Link to="/biblioteca-de-provas-e-materiais-site/signup">Registre-se</Link> </p>
+        <p style={styles.signupText}>Não possui uma conta? <Link to="/signup">Registre-se</Link> </p>
 
       </form>
 
