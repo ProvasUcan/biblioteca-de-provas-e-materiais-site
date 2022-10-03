@@ -4,7 +4,7 @@ export const getActualUserData = async () => {
   const res = await fetch(`${apiBaseUrl}/user`, {
     method: 'GET',
     headers: {
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
@@ -16,7 +16,7 @@ export const getUserById = async (userId) => {
   const res = await fetch(`${apiBaseUrl}/user/${userId}`, {
     method: 'GET',
     headers: {
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
@@ -28,7 +28,7 @@ export const getContributors = async (userId) => {
   const res = await fetch(`${apiBaseUrl}/user/contributors`, {
     method: 'GET',
     headers: {
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
@@ -41,7 +41,7 @@ export const updateUser = async (userId, body) => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     },
     body: JSON.stringify(body)
   })

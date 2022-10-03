@@ -6,10 +6,12 @@ export const isValidToken = async () => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
+
+  console.log(data)
 
   return data.status === 200
 }

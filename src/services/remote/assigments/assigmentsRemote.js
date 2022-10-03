@@ -22,7 +22,7 @@ export const uploadAssigments = async (remoteDestFolder, files, userIdentificati
       method: "POST",
       body: form,
       headers: {
-        'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+        'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
       }
     })
     return true;

@@ -5,7 +5,7 @@ export const createNotification = async (body) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     },
     body: JSON.stringify(body)
   })
@@ -18,7 +18,7 @@ export const getQuantNotifications = async () => {
   const res = await fetch(`${apiBaseUrl}/submission/notification/count`, {
     method: 'GET',
     headers: {
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
@@ -30,7 +30,7 @@ export const getNotifications = async () => {
   const res = await fetch(`${apiBaseUrl}/submission/notification/all`, {
     method: 'GET',
     headers: {
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
@@ -42,7 +42,7 @@ export const getSpecificNotification = async (id) => {
   const res = await fetch(`${apiBaseUrl}/submission/notification/${id}`, {
     method: 'GET',
     headers: {
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
@@ -54,7 +54,7 @@ export const deleteNotification = async (courseId) => {
   const res = await fetch(`${apiBaseUrl}/submission/notification/${courseId}`, {
     method: 'DELETE',
     headers: {
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     }
   })
   const data = await res.json()
@@ -67,7 +67,7 @@ export const updateNotification = async (courseId, body) => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'auth-token': localStorage.getItem('auth-token-biblioteca-de-provas')
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
     },
     body: JSON.stringify(body)
   })

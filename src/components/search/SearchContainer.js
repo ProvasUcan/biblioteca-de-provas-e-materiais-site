@@ -7,8 +7,6 @@ const SearchContainer = (
     handleActualSubjectChange,
     handleActualDocumentType,
     actualCourse,
-    actualSubject,
-    actualDocumentType,
     allCoursesStructure
   }
 ) => {
