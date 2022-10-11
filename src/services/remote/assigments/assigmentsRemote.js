@@ -7,10 +7,17 @@ export const getAssigments = async (course, subject, documentType) => {
   return data.result.filesUrls;
 }
 
-export const uploadAssigments = async (remoteDestFolder, files, userIdentification = 'anonymous') => {
+export const uploadAssigments = async (submissionArea, files, userIdentification = 'anonymous') => {
   var form = new FormData();
 
-  form.append('destFolder', remoteDestFolder);
+  console.log(submissionArea)
+
+  form.append('course', submissionArea.course);
+  form.append('year', submissionArea.year);
+  form.append('semestre', submissionArea.semestre);
+  form.append('subject', submissionArea.subject);
+  form.append('documentType', submissionArea.documentType);
+
   form.append('userEmail', userIdentification);
 
   for (let actualFileIndex = 0; actualFileIndex < files.length; actualFileIndex++) {
@@ -22,7 +29,7 @@ export const uploadAssigments = async (remoteDestFolder, files, userIdentificati
       method: "POST",
       body: form,
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+        'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
       }
     })
     return true;

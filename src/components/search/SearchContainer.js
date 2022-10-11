@@ -36,13 +36,16 @@ const SearchContainer = ({
         setActualSemestre(semestre);
         setSemestres(Object.keys(allCoursesStructure[course][course][year]));
 
-        setSubjects(
-          Object.keys(allCoursesStructure[course][course][year][semestre])
+        const subjects = Object.keys(
+          allCoursesStructure[course][course][year][semestre]
         );
+
+        console.log(subjects)
+        setSubjects(subjects);
 
         handleActualCourseChange(course);
         handleActualSubjectChange(
-          Object.keys(allCoursesStructure[course][course][year][semestre])[0]
+          subjects[0]
         );
         handleActualDocumentType("Frequências");
       }
@@ -137,9 +140,12 @@ const SearchContainer = ({
           id="course"
           className="search-container--element"
         >
-          {courses.map((course) => (
-            <option value={course}>{course}</option>
-          ))}
+          {courses.map((courseIdentification) => {
+            const splitedCourseIdentification = courseIdentification.split("#");
+            const courseName = splitedCourseIdentification[1].trim();
+
+            return <option value={courseIdentification}>{courseName}</option>;
+          })}
         </select>
 
         <select
@@ -170,9 +176,12 @@ const SearchContainer = ({
           id="subject"
           className="search-container--element"
         >
-          {subjects.map((subject) => (
-            <option value={subject}>{subject}</option>
-          ))}
+          {subjects.map((subjectIdentification) => {
+            const splitedSubjectIdentification = subjectIdentification.split("#");
+            const subjectName = splitedSubjectIdentification[1].trim();
+
+            return <option value={subjectIdentification}>{subjectName}</option>;
+          })}
         </select>
 
         <select

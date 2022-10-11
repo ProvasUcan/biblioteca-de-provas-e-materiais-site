@@ -12,7 +12,7 @@ export const createSubject = async (body) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     },
     body: JSON.stringify(body)
   })
@@ -25,7 +25,7 @@ export const getSubjects = async () => {
   const res = await fetch(`${apiBaseUrl}/subject`, {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data = await res.json()
@@ -37,7 +37,7 @@ export const deleteSubject = async (subjectId) => {
   const res = await fetch(`${apiBaseUrl}/subject/${subjectId}`, {
     method: 'DELETE',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data = await res.json()
@@ -50,7 +50,7 @@ export const updateSubject = async (subjectId, body) => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     },
     body: JSON.stringify(body)
   })

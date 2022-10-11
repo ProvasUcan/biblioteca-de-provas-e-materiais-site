@@ -3,17 +3,10 @@ import { useSelector } from "react-redux";
 import AssigmentContainer from "../../components/assigments/AssigmentContainer";
 import SearchContainer from "../../components/search/SearchContainer";
 import { download } from "../../helpers/download/downloadHelper";
-import store from "../../reducers/Store";
-
 export const SearchContext = React.createContext({});
 
 function HomePage({ getAllCoursesStructure, getAssigments }) {
-  const courseStructure = useSelector(state => state.search);
-
-  console.log("..............")
-  console.log(courseStructure)
-  console.log("---------------")
-  console.log(store.getState());
+  const courseStructure = useSelector((state) => state.search);
 
   const [assigments, setAssigments] = useState([]);
   const [actualCourse, setActualCourse] = useState("");
@@ -26,9 +19,13 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
 
   const handleGetAssigment = async () => {
     setIsPedding(true);
+
+    const actualCourseId = actualCourse.split("#")[0].trim();
+    const actualSubjectId = actualSubject.split("#")[0].trim();
+
     const assigments = await getAssigments(
-      actualCourse,
-      actualSubject,
+      actualCourseId,
+      actualSubjectId,
       actualDocumentType
     );
 
@@ -82,33 +79,28 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
             allCoursesStructure={allCoursesStructure}
             handleSearch={searchButton}
           ></SearchContainer>
-
-          <SearchContext.Provider
-            value={{
-              name: `${actualCourse} - ${actualSubject} - ${actualDocumentType}`,
-            }}
-          >
-            <AssigmentContainer
-              assigments={assigments}
-              isPedding={isPedding}
-              downloadAssigment={download}
-            ></AssigmentContainer>
-          </SearchContext.Provider>
         </>
       )}
 
       {isAllCoursesStructurePending === true && (
-        <div
-          id={"sending-form-loader-container" + 0}
-          className="sending-form-loader-container"
-          style={{ display: "flex", opacity: "1" }}
-        >
+        <div>
           <>
             <div className="loader-spinner"></div>
-            <h2 className="loader-spinner-text">Carregando ...</h2>
           </>
         </div>
       )}
+
+      <SearchContext.Provider
+        value={{
+          name: `${actualCourse} - ${actualSubject} - ${actualDocumentType}`,
+        }}
+      >
+        <AssigmentContainer
+          assigments={assigments}
+          isPedding={isPedding}
+          downloadAssigment={download}
+        ></AssigmentContainer>
+      </SearchContext.Provider>
     </div>
   );
 }

@@ -5,7 +5,7 @@ export const getApprovedSubmissions = async () => {
   {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
@@ -18,7 +18,7 @@ export const getNotApprovedSubmissions = async () => {
   {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
@@ -30,7 +30,7 @@ export const getRejectedSubmissions = async () => {
   {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
@@ -43,7 +43,7 @@ export const getSpecificSubmission = async (submissionId) => {
   {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
@@ -56,7 +56,7 @@ export const approveSubmission = async (submissionId) => {
   {
     method: 'PUT',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
@@ -68,7 +68,7 @@ export const desapproveSubmission = async (submissionId) => {
   {
     method: 'PUT',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
@@ -81,7 +81,7 @@ export const rejectSubmission = async (submissionId) => {
   {
     method: 'PUT',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
@@ -93,7 +93,7 @@ export const deleteSubmission = async (submissionId) => {
   {
     method: 'DELETE',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas')}`
+      'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }
   })
   const data  = await response.json();
