@@ -6,70 +6,69 @@ const Contribute = ({ getAllCoursesStructure }) => {
   const [formId, setFormId] = useState(0);
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
 
+  const handleAllCourseStructure = React.useCallback(
+    async function () {
+      if (Object.keys(allCoursesStructure).length === 0) {
+        const courses = await getAllCoursesStructure();
 
-  const handleAllCourseStructure = React.useCallback(async function () {
-    const courses = await getAllCoursesStructure();
-
-    setAllCoursesStructure(courses);
-  }, [getAllCoursesStructure])
-
-  function createForm() {
-    if (Object.keys(allCoursesStructure).length !== 0) {
-      const auxForms = forms;
-
-      auxForms.push({
-        formId: 'form-' + formId,
-        handleDelete: deleteForm,
-        allCoursesStructure: allCoursesStructure
-      })
-      setForms(auxForms);
-      setFormId(formId + 1);
-    } else {
-      alert('Carrengando estrutura de cursos');
-    }
-
-  }
-
-  function deleteForm(id) {
-    setForms((prev) => {
-      const auxForms = [];
-
-      const deleteIndex = Number(id.split('-')[1]);
-
-      for (let i = 0; i < forms.length; i++) {
-        const deleteIndexForm = Number(forms[i].formId.split('-')[1]);
-
-        if (deleteIndexForm !== deleteIndex) {
-          auxForms.push(forms[i])
-        }
+        setAllCoursesStructure(courses);
       }
+    },
+    [getAllCoursesStructure, allCoursesStructure]
+  );
 
-      return auxForms;
-    })
-  }
+  const createForm = () => {
+    if (Object.keys(allCoursesStructure).length !== 0) {
+      const form = {
+        formId: "form-" + formId,
+        handleDelete: deleteForm,
+        allCoursesStructure: allCoursesStructure,
+      };
+
+      setForms((prev) => prev.concat(form));
+      setFormId((formId) => formId + 1);
+    } else {
+      //alert("Carrengando estrutura de cursos");
+    }
+  };
+
+  const deleteForm = (id) => {
+    setForms((prev) => prev.filter((form) => form.formId !== id));
+  };
 
   useEffect(() => {
-    handleAllCourseStructure()
-  }, [handleAllCourseStructure])
+    handleAllCourseStructure();
+  }, []);
 
   return (
     <div className="contribute-container">
-      <img src="./img/undraw_Team_re_0bfe.svg" alt="Error not found" className="contributers-ilustration" />
+      <img
+        src="./img/undraw_Team_re_0bfe.svg"
+        alt="Error not found"
+        className="contributers-ilustration"
+      />
 
       <div className="text-container">
-        <h1 className="desc-text">Aqui a sua contribuição e ajuda têm valor </h1>
+        <h1 className="desc-text">
+          Aqui a sua contribuição e ajuda têm valor{" "}
+        </h1>
       </div>
-      <button className="create-new-form" onClick={createForm}>Contribuir</button>
+      <button className="create-new-form" onClick={createForm}>
+        Contribuir
+      </button>
 
       <div className="contribute-form-container">
-        {
-          forms.map((form, index) => (
-            <Form id={form.formId} key={form.formId} handleDelete={form.handleDelete} allCoursesStructure={form.allCoursesStructure}></Form>
-          ))
-        }
+        {forms.map((form, index) => (
+          <Form
+            id={form.formId}
+            key={form.formId}
+            handleDelete={form.handleDelete}
+            allCoursesStructure={form.allCoursesStructure}
+          ></Form>
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default Contribute;
