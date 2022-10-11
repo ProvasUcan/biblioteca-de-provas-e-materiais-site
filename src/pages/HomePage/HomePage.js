@@ -15,6 +15,10 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
   const [actualSubject, setActualSubject] = useState("");
   const [actualDocumentType, setActualDocumentType] = useState("");
   const [allCoursesStructure, setAllCoursesStructure] = useState({});
+  const [
+    errorWhileGettingAllCourseStructure,
+    setErrorWhileGettingAllCourseStructure,
+  ] = useState(false);
   const [isPedding, setIsPedding] = useState(false);
 
   const handleGetAssigment = async () => {
@@ -23,14 +27,18 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
     const actualCourseId = actualCourse.split("#")[0].trim();
     const actualSubjectId = actualSubject.split("#")[0].trim();
 
-    const assigments = await getAssigments(
-      actualCourseId,
-      actualSubjectId,
-      actualDocumentType
-    );
+    try {
+      const assigments = await getAssigments(
+        actualCourseId,
+        actualSubjectId,
+        actualDocumentType
+      );
 
-    setIsPedding(false);
-    setAssigments(assigments);
+      setIsPedding(false);
+      setAssigments(assigments);
+    } catch (error) {
+      setIsPedding(false);
+    }
   };
 
   const searchButton = async () => {
@@ -55,7 +63,8 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
         setAllCoursesStructure(courses);
         setAllCoursesStructurePending(false);
       } catch (error) {
-        console.log(error);
+        setErrorWhileGettingAllCourseStructure(true);
+        setAllCoursesStructurePending(false);
       }
     },
     [getAllCoursesStructure]
@@ -67,26 +76,37 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
 
   return (
     <div>
-      {isAllCoursesStructurePending === false && (
-        <>
-          <SearchContainer
-            handleActualCourseChange={courseChange}
-            handleActualSubjectChange={subjectChange}
-            handleActualDocumentType={documentTypeChange}
-            actualCourse={actualCourse}
-            actualSubject={actualSubject}
-            actualDocumentType={actualDocumentType}
-            allCoursesStructure={allCoursesStructure}
-            handleSearch={searchButton}
-          ></SearchContainer>
-        </>
-      )}
-
-      {isAllCoursesStructurePending === true && (
-        <div>
+      {isAllCoursesStructurePending === false &&
+        errorWhileGettingAllCourseStructure === false && (
           <>
-            <div className="loader-spinner"></div>
+            <SearchContainer
+              handleActualCourseChange={courseChange}
+              handleActualSubjectChange={subjectChange}
+              handleActualDocumentType={documentTypeChange}
+              actualCourse={actualCourse}
+              actualSubject={actualSubject}
+              actualDocumentType={actualDocumentType}
+              allCoursesStructure={allCoursesStructure}
+              handleSearch={searchButton}
+            ></SearchContainer>
           </>
+        )}
+
+      {isAllCoursesStructurePending === true &&
+        !errorWhileGettingAllCourseStructure && (
+          <div>
+            <>
+              <div className="loader-spinner"></div>
+            </>
+          </div>
+        )}
+
+      {errorWhileGettingAllCourseStructure && (
+        <div>
+          <p style={{ fontSize: "2rem" }}>
+            Um erro aconteceu, lamentamos, contacte{" "}
+            <b>provasucan01@gmail.com</b> para suporte e ajuda.
+          </p>
         </div>
       )}
 
