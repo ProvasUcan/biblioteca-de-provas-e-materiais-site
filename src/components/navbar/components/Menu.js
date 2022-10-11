@@ -69,7 +69,7 @@ export default function Menu() {
             <Link to="/login" className="menu-link">Login</Link>
           }
           <Link to="/contributers" className="menu-link">Contribuidores</Link>
-          <Link to="/" className="menu-link contribute-link">Contribua</Link>
+          <Link to="/contribute" className="menu-link contribute-link">Contribua</Link>
           {
             hasAdminRole &&
             <Link to="/admin" className="menu-link admin-menu-link">Admin</Link>

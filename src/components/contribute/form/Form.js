@@ -15,6 +15,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
   const [yearSelected, setYearSelected] = useState("");
   const [semestreSelected, setSemestreSelected] = useState("");
   const [subjectSelected, setSubjectSelected] = useState("");
+  const [documentType, setDocumentTypeSelected] = useState("");
   const [coursesStructure, setCoursesStructure] = useState({});
 
   const setInitialStateOfForm = React.useCallback(async () => {
@@ -25,7 +26,6 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
       setAvailableCourses(courses);
 
       const course = courses[0];
-      setCourseSelected(course);
 
       const year = Object.keys(allCoursesStructure[course][course])[0];
       setAvaibleYears(Object.keys(allCoursesStructure[course][course]));
@@ -39,42 +39,94 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         Object.keys(allCoursesStructure[course][course][year])
       );
 
-      setSubjectSelected(
-        Object.keys(allCoursesStructure[course][course][year][semestre])[0]
+      const subjects = Object.keys(
+        allCoursesStructure[course][course][year][semestre]
       );
-      setAvaibleSubjects(
-        Object.keys(allCoursesStructure[course][course][year][semestre])
-      );
+
+      setAvaibleSubjects(subjects);
+
+      setCourseSelected(course);
+      setSubjectSelected(subjects[0]);
+      setDocumentTypeSelected("Frequências");
     }
   }, [allCoursesStructure]);
+
+  const courseChange = function (e) {
+    const course = e.target.value;
+    setCourseSelected(course);
+
+    try {
+      const years = Object.keys(allCoursesStructure[course][course]);
+      const year = years[0];
+
+      setYearSelected(year);
+
+      const semestres = Object.keys(allCoursesStructure[course][course][year]);
+      const semestre = semestres[0];
+
+      setSemestreSelected(semestre);
+
+      const subjects = Object.keys(
+        allCoursesStructure[course][course][year][semestre]
+      );
+      const subject = subjects[0];
+
+      setSubjectSelected(subject);
+
+      setAvaibleYears(years);
+      setAvaibleSemestres(semestres);
+      setAvaibleSubjects(subjects);
+    } catch (err) {
+      setAvaibleYears([]);
+      setAvaibleSemestres([]);
+      setAvaibleSubjects([]);
+    }
+  };
 
   const handleYearChange = (e) => {
     const year = e.target.value;
 
     setYearSelected(year);
-    setAvaibleSemestres(
-      Object.keys(allCoursesStructure[courseSelected][courseSelected][year])
+
+    const semestres = Object.keys(
+      allCoursesStructure[courseSelected][courseSelected][year]
     );
-    setAvaibleSubjects(
-      Object.keys(
-        allCoursesStructure[courseSelected][courseSelected][year][
-          semestreSelected
-        ]
-      )
+    const semestre = semestres[0];
+
+    setAvaibleSemestres(semestres);
+    setSemestreSelected(semestre);
+
+    const subjects = Object.keys(
+      allCoursesStructure[courseSelected][courseSelected][year][semestre]
     );
+    const subject = subjects[0];
+
+    setAvaibleSubjects(subjects);
+    setSubjectSelected(subject);
   };
 
   const handleSemestre = (e) => {
     const semestre = e.target.value;
 
     setSemestreSelected(semestre);
-    setAvaibleSubjects(
-      Object.keys(
-        allCoursesStructure[courseSelected][courseSelected][yearSelected][
-          semestre
-        ]
-      )
+
+    const subjects = Object.keys(
+      allCoursesStructure[courseSelected][courseSelected][yearSelected][
+        semestre
+      ]
     );
+    const subject = subjects[0];
+
+    setAvaibleSubjects(subjects);
+    setSubjectSelected(subject);
+  };
+
+  const subjectChange = function (e) {
+    setSubjectSelected(e.target.value);
+  };
+
+  const documentTypeChange = function (e) {
+    setDocumentTypeSelected(e.target.value);
   };
 
   const activeLoader = (id) => {
@@ -104,40 +156,45 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
 
     const files = document.getElementById("files" + id).files;
 
+    const actualCourseId = courseSelected.split("#")[0].trim();
+    const actualSubjectId = subjectSelected.split("#")[0].trim();
+
     if (files.length !== 0) {
       console.log(
         {
-          course: document.getElementById("course").value,
-          year: document.getElementById("year").value,
-          semestre: document.getElementById("semestre").value,
-          subject: document.getElementById("subject").value,
-          documentType: document.getElementById("documentType").value,
-        },
-        files
-      );
-      const response = await uploadAssigments(
-        {
-          course: document.getElementById("course").value,
-          year: document.getElementById("year").value,
-          semestre: document.getElementById("semestre").value,
-          subject: document.getElementById("subject").value,
-          documentType: document.getElementById("documentType").value,
+          course: actualCourseId,
+          year: yearSelected,
+          semestre: semestreSelected,
+          subject: actualSubjectId,
+          documentType: documentType,
         },
         files
       );
 
-      if (response) {
-        setFormState("sended");
-        setTimeout(() => {
-          handleDelete(id);
-        }, 10000);
-      } else {
-        setFormState("error");
-        setTimeout(() => {
-          removeLoader(id);
-        }, 10000);
-      }
-    } else {
+      try {
+        const response = await uploadAssigments(
+          {
+            course: actualCourseId,
+            year: actualSubjectId,
+            semestre: document.getElementById("semestre").value,
+            subject: document.getElementById("subject").value,
+            documentType: document.getElementById("documentType").value,
+          },
+          files
+        );
+
+        if (response) {
+          setFormState("sended");
+          setTimeout(() => {
+            handleDelete(id);
+          }, 3500);
+        } else {
+          setFormState("error");
+          setTimeout(() => {
+            removeLoader(id);
+          }, 3500);
+        }
+      } catch (error) {}
     }
   };
 
@@ -185,12 +242,24 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         Deletar
       </span>
 
-      <h1 className="subject-form-name">{subjectSelected}</h1>
+      <h1 className="subject-form-name">
+        {subjectSelected.indexOf("#") !== -1
+          ? subjectSelected.split("#")[1].trim()
+          : ""}
+      </h1>
       <div className="form-row-line">
-        <select name="course" id="course" className="search-container--element">
-          {avaibleCourses.map((course) => (
-            <option value={course}> {course} </option>
-          ))}
+        <select
+          onChange={courseChange}
+          name="course"
+          id="course"
+          className="search-container--element"
+        >
+          {avaibleCourses.map((courseIdentification) => {
+            const splitedCourseIdentification = courseIdentification.split("#");
+            const courseName = splitedCourseIdentification[1].trim();
+
+            return <option value={courseIdentification}>{courseName}</option>;
+          })}
         </select>
 
         <select
@@ -219,19 +288,22 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
           name="subject"
           id="subject"
           className="search-container--element"
-          onChange={(e) => {
-            setSubjectSelected(e.target.value);
-          }}
+          onChange={subjectChange}
         >
-          {avaibleSubjects.map((subject) => (
-            <option value={subject}> {subject} </option>
-          ))}
+          {avaibleSubjects.map((subjectIdentification) => {
+            const splitedSubjectIdentification =
+              subjectIdentification.split("#");
+            const subjectName = splitedSubjectIdentification[1].trim();
+
+            return <option value={subjectIdentification}>{subjectName}</option>;
+          })}
         </select>
 
         <select
           name="documentType"
           id="documentType"
           className="search-container--element"
+          onChange={documentTypeChange}
         >
           <option value="Frequências">Frequências</option>
           <option value="Exames">Exames</option>
@@ -242,6 +314,7 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         <input
           type="file"
           name="files"
+          accept="image/jpeg, image/png, image/jpg"
           id={"files" + id}
           className="files-input"
           onChange={(e) => {

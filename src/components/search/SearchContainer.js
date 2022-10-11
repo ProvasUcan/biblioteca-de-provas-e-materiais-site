@@ -40,7 +40,6 @@ const SearchContainer = ({
           allCoursesStructure[course][course][year][semestre]
         );
 
-        console.log(subjects)
         setSubjects(subjects);
 
         handleActualCourseChange(course);
