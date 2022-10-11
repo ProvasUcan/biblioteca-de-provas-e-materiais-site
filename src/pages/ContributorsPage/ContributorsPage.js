@@ -7,14 +7,17 @@ function ContributorsPage() {
 
   const handleGetContributors = async () => {
     const res = await getContributors()
+    console.log(res)
 
     if (res.users !== undefined) {
       setContributors(res.users)
     }
   }
+
   useEffect(() => {
     handleGetContributors()
-  })
+  }, [])
+
   return (
     <>
       <h1 className="desc-text">Um grande obrigado para todos os nossos contribudores que ajudam a ajudar o próximo! &#4560;</h1>
