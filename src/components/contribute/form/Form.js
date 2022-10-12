@@ -175,10 +175,10 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
         const response = await uploadAssigments(
           {
             course: actualCourseId,
-            year: actualSubjectId,
-            semestre: document.getElementById("semestre").value,
-            subject: document.getElementById("subject").value,
-            documentType: document.getElementById("documentType").value,
+            year: yearSelected,
+            semestre: semestreSelected,
+            subject: actualSubjectId,
+            documentType: documentType,
           },
           files
         );
