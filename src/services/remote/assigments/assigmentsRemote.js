@@ -28,6 +28,7 @@ export const uploadAssigments = async (submissionArea, files, userIdentification
     await fetch(`${apiBaseUrl}/submission/upload`, {
       method: "POST",
       body: form,
+      mode: 'no-cors',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
       }

@@ -60,9 +60,14 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
       try {
         const courses = await getAllCoursesStructure();
 
+        console.log(courses)
+
         setAllCoursesStructure(courses);
         setAllCoursesStructurePending(false);
+        setErrorWhileGettingAllCourseStructure(false);
+        setAllCoursesStructurePending(false);
       } catch (error) {
+        console.log(error);
         setErrorWhileGettingAllCourseStructure(true);
         setAllCoursesStructurePending(false);
       }

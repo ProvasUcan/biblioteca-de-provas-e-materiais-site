@@ -3,6 +3,7 @@ import { apiBaseUrl } from "../../../config/apiConfig";
 export const createCourseSubject = async (body) => {
   const res = await fetch(`${apiBaseUrl}/association`, {
     method: 'POST',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`

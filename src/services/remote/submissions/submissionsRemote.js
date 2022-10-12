@@ -4,6 +4,7 @@ export const getApprovedSubmissions = async () => {
   const response = await fetch(`${apiBaseUrl}/submission/approve`,
   {
     method: 'GET',
+    mode: 'no-cors',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
     }

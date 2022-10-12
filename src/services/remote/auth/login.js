@@ -4,6 +4,7 @@ export const login = async (body) => {
   try {
     const result = await fetch(`${apiBaseUrl}/auth/login`, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json'

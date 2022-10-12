@@ -1,4 +1,3 @@
-
 import { apiBaseUrl } from "../../../config/apiConfig";
 import store from "../../../reducers/Store";
 
@@ -16,7 +15,18 @@ export const getAllCoursesStructure = async function () {
   if (state.alreadyLoadedCourseStructure) {
     auxAllCoursesStructure = state.courseStructure;
   } else {
-    auxAllCoursesStructure = await fetch(`${apiBaseUrl}/course/all`);
+    auxAllCoursesStructure = await fetch(`${apiBaseUrl}/course/all`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem(
+          "auth-token-biblioteca-de-provas"
+        )}`,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "*",
+      },
+    });
     auxAllCoursesStructure = await auxAllCoursesStructure.json();
     auxAllCoursesStructure = auxAllCoursesStructure.courses;
 
@@ -35,11 +45,15 @@ export const getAllCoursesStructure = async function () {
 export const createCourse = async (body) => {
   const res = await fetch(`${apiBaseUrl}/course`, {
     method: "POST",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem(
         "auth-token-biblioteca-de-provas"
       )}`,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true",
+      "Access-Control-Allow-Headers": "*",
     },
     body: JSON.stringify(body),
   });

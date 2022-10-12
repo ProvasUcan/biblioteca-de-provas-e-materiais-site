@@ -10,6 +10,7 @@ export const getAllSubjectsStructure = async function () {
 export const createSubject = async (body) => {
   const res = await fetch(`${apiBaseUrl}/subject`, {
     method: 'POST',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.getItem('auth-token-biblioteca-de-provas') ? localStorage.getItem('auth-token-biblioteca-de-provas') : ''}`
