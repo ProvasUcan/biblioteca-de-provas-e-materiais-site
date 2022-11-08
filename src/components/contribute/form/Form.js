@@ -160,17 +160,6 @@ const Form = ({ id, handleDelete, allCoursesStructure }) => {
     const actualSubjectId = subjectSelected.split("#")[0].trim();
 
     if (files.length !== 0) {
-      console.log(
-        {
-          course: actualCourseId,
-          year: yearSelected,
-          semestre: semestreSelected,
-          subject: actualSubjectId,
-          documentType: documentType,
-        },
-        files
-      );
-
       try {
         const response = await uploadAssigments(
           {

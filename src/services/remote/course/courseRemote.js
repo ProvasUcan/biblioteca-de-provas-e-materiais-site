@@ -1,5 +1,5 @@
-import { apiBaseUrl } from "../../../config/apiConfig";
 import store from "../../../reducers/Store";
+import { httpRequest } from "../../http/httpService";
 
 /*
 1- See if we have the structure locale
@@ -15,18 +15,8 @@ export const getAllCoursesStructure = async function () {
   if (state.alreadyLoadedCourseStructure) {
     auxAllCoursesStructure = state.courseStructure;
   } else {
-    auxAllCoursesStructure = await fetch(`${apiBaseUrl}/course/all`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem(
-          "auth-token-biblioteca-de-provas"
-        )}`,
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers": "*",
-      },
-    });
+    auxAllCoursesStructure = await httpRequest(`/course/all`, "GET");
+
     auxAllCoursesStructure = await auxAllCoursesStructure.json();
     auxAllCoursesStructure = auxAllCoursesStructure.courses;
 
@@ -43,64 +33,32 @@ export const getAllCoursesStructure = async function () {
 };
 
 export const createCourse = async (body) => {
-  const res = await fetch(`${apiBaseUrl}/course`, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem(
-        "auth-token-biblioteca-de-provas"
-      )}`,
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": "true",
-      "Access-Control-Allow-Headers": "*",
-    },
-    body: JSON.stringify(body),
-  });
+  const res = await httpRequest(`/course`, "POST", JSON.stringify(body));
   const data = await res.json();
 
   return data;
 };
 
 export const getCourses = async () => {
-  const res = await fetch(`${apiBaseUrl}/course`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem(
-        "auth-token-biblioteca-de-provas"
-      )}`,
-    },
-  });
+  const res = await httpRequest(`/course`, "GET");
   const data = await res.json();
 
   return data.courses;
 };
 
 export const deleteCourse = async (courseId) => {
-  const res = await fetch(`${apiBaseUrl}/course/${courseId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem(
-        "auth-token-biblioteca-de-provas"
-      )}`,
-    },
-  });
+  const res = await httpRequest(`/course/${courseId}`, "DELETE");
   const data = await res.json();
 
   return data.data;
 };
 
 export const updateCourse = async (courseId, body) => {
-  const res = await fetch(`${apiBaseUrl}/course/${courseId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem(
-        "auth-token-biblioteca-de-provas"
-      )}`,
-    },
-    body: JSON.stringify(body),
-  });
+  const res = await httpRequest(
+    `/course/${courseId}`,
+    "PUT",
+    JSON.stringify(body)
+  );
   const data = await res.json();
 
   return data.data;

@@ -59,9 +59,7 @@ function HomePage({ getAllCoursesStructure, getAssigments }) {
     async function () {
       try {
         const courses = await getAllCoursesStructure();
-
-        console.log(courses)
-
+        
         setAllCoursesStructure(courses);
         setAllCoursesStructurePending(false);
         setErrorWhileGettingAllCourseStructure(false);
