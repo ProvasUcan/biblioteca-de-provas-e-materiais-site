@@ -9,10 +9,6 @@ export const httpRequest = async (
   headers = {}
 ) => {
   headers = {
-    "Content-Type":
-      headers["Content-Type"] === undefined
-        ? "application/json"
-        : headers["Content-Type"],
     Authorization: `Bearer ${
       localStorage.getItem("auth-token-biblioteca-de-provas")
         ? localStorage.getItem("auth-token-biblioteca-de-provas")
