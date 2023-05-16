@@ -22,6 +22,12 @@ export const httpRequest = async (
   };
 
   if (REQUEST_METHODS.indexOf(method) !== -1) {
+    console.log({
+      url: `${apiBaseUrl}${endpoint}`,
+      method,
+      body,
+      headers,
+    });
     const response = await fetch(`${apiBaseUrl}${endpoint}`, {
       method,
       body,
