@@ -6,9 +6,10 @@ import { login } from "../../services/remote/auth/login";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [sendingLogin, setSendingLogin] = useState(false);
   const loginSubmit = async (e) => {
     e.preventDefault();
+    setSendingLogin(true);
 
     try {
       console.log({
@@ -28,9 +29,11 @@ function LoginPage() {
       } else {
         alert("Dados incorrectos");
       }
+      setSendingLogin(false);
     } catch (error) {
       console.log(error);
     }
+    setSendingLogin(false);
   };
 
   return (
@@ -56,7 +59,7 @@ function LoginPage() {
               Email
             </label>
             <input
-              type="email"
+              type="text"
               name="email"
               id="email-input"
               style={styles.formInput}
@@ -84,7 +87,13 @@ function LoginPage() {
             />
           </div>
 
-          <input type="submit" value="Login" style={styles.submitButton} />
+          {sendingLogin == false ? (
+            <input type="submit" value="Login" style={styles.submitButton} />
+          ) : (
+            <div style={styles.progressContainer}>
+              <span>Loading...</span>
+            </div>
+          )}
         </div>
 
         <p style={styles.signupText}>
@@ -143,6 +152,17 @@ const styles = {
   },
   signupText: {
     fontSize: "1.4rem",
+  },
+  progressContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "15px 0",
+    background: "#00b2ff",
+    color: "#fff",
+    fontSize: "16px",
+    borderRadius: "10px"
+
   },
   backgroundImage: {
     position: "absolute",
